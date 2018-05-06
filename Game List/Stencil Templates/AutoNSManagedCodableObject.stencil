@@ -1,0 +1,28 @@
+// swiftlint:disable file_length
+import Foundation
+
+{% for type in types.implementing.AutoNSManagedCodableObject %}
+// MARK: {{ type.name }} type
+
+extension {{ type.name }}: Codable {
+  enum CodingKeys: String, CodingKey {
+    {% for variable in type.storedVariables %}
+      case {{ variable.name }}
+    {% endfor %}
+  }
+
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    {% for variable in type.variables %}
+      try container.encode({{ variable.name }}, forKey: .{{ variable.name }})
+    {% endfor %}
+  }
+
+  public func customDecoder(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    {% for variable in type.variables %}
+      {{ variable.name }} = try values.decode({{ variable.typeName.name }}.self, forKey: .{{ variable.name }})
+    {% endfor %}
+  }
+}
+{% endfor %}

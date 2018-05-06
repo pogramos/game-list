@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1rD-x8-QCt">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="6mX-gE-F1w">
+            <objects>
+                <viewController id="lS2-2a-WgT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xlO-UM-Hzh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d8f-IL-eMT">
+                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="d8f-IL-eMT" firstAttribute="leading" secondItem="8PE-Wm-594" secondAttribute="leading" id="Uk3-ph-xrD"/>
+                            <constraint firstItem="8PE-Wm-594" firstAttribute="trailing" secondItem="d8f-IL-eMT" secondAttribute="trailing" id="bCj-2y-h0c"/>
+                            <constraint firstItem="8PE-Wm-594" firstAttribute="bottom" secondItem="d8f-IL-eMT" secondAttribute="bottom" id="h5J-hJ-tBo"/>
+                            <constraint firstItem="d8f-IL-eMT" firstAttribute="top" secondItem="8PE-Wm-594" secondAttribute="top" id="mmq-Se-VSj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8PE-Wm-594"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5A2-Xf-GA8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aap-HN-BLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1247.2" y="-248.27586206896552"/>
+        </scene>
+        <!--Genres-->
+        <scene sceneID="ucJ-9h-SUH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="1rD-x8-QCt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Genres" image="genre" selectedImage="genre" id="1Hz-K4-pNg"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8aR-Ih-4mV">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lS2-2a-WgT" kind="relationship" relationship="rootViewController" id="Kzj-LD-MbV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g2B-Md-Ism" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304.80000000000001" y="-248.27586206896552"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="genre" width="32" height="32"/>
+    </resources>
+</document>
