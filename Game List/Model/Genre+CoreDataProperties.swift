@@ -2,7 +2,7 @@
 //  Genre+CoreDataProperties.swift
 //  Game List
 //
-//  Created by Guilherme on 5/6/18.
+//  Created by Guilherme Ramos on 12/05/2018.
 //  Copyright © 2018 Progeekt. All rights reserved.
 //
 //
@@ -16,9 +16,9 @@ extension Genre: AutoNSManagedCodableObject {
         return NSFetchRequest<Genre>(entityName: "Genre")
     }
 
+    @NSManaged public var created_at: Int64
     @NSManaged public var id: Int32
     @NSManaged public var name: String?
-    @NSManaged public var created_at: Int64
     @NSManaged public var updated_at: Int64
     @NSManaged public var url: String?
 

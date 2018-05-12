@@ -16,7 +16,7 @@ class RequestBuilder {
     /// - Returns: A new fixed path in case it is passed without the slash, otherwise return without editing it
     fileprivate class func checkAndFix(_ path: String) -> String {
         var path = path
-        if path != "" && path.prefix(path.startIndex.encodedOffset) != "/" {
+        if path != "" && path[0] != "/" {
             path.insert("/", at: path.startIndex)
         }
         return path

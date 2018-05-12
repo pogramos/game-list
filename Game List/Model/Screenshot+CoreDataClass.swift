@@ -1,5 +1,5 @@
 //
-//  Genre+CoreDataClass.swift
+//  Screenshot+CoreDataClass.swift
 //  Game List
 //
 //  Created by Guilherme Ramos on 12/05/2018.
@@ -10,14 +10,14 @@
 import Foundation
 import CoreData
 
-@objc(Genre)
-public class Genre: NSManagedObject {
+@objc(Screenshot)
+public class Screenshot: NSManagedObject {
     /// title: "NSManagedObject Codable Initializer"
     /// summary: "Initializes the object for a NSManagedObject conforming the codable protocol"
     /// completion shortcut: initnsmanagedcodable
     /// completion-scope: All
     public required convenience init(from decoder: Decoder) throws {
-        let entityName = String(describing: Genre.self)
+        let entityName = String(describing: Screenshot.self)
         guard let contextKey = CodingUserInfoKey.context else {
             fatalError("Could not find contextKey")
         }
