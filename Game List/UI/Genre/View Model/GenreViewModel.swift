@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+protocol GenreViewModelDelegate: class {
+    func updateUI()
+}
+
+class GenreViewModel {
+    func fetchGenres () {
+        let parameters = Parameters([
+            "fields": "id,name" as AnyObject
+            ])
+        //        IGDBApi.getGenres(with: parameters, success: { (genres) in
+        //            print(genres ?? "")
+        //        }, failure: { (error) in
+        //            print(error)
+        //        })
+    }
+}
