@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551EF5E120A67DC4007C92D4 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551EF5E020A67DC4007C92D4 /* DataController.swift */; };
 		E652CE72209E5CFD000B2619 /* GameListRequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE71209E5CFD000B2619 /* GameListRequestBuilderTests.swift */; };
 		E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE74209E5D15000B2619 /* RequestBuilder.swift */; };
 		E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE78209E5DA7000B2619 /* Parameters.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		551EF5E020A67DC4007C92D4 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		E652CE71209E5CFD000B2619 /* GameListRequestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListRequestBuilderTests.swift; sourceTree = "<group>"; };
 		E652CE74209E5D15000B2619 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		E652CE78209E5DA7000B2619 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				E6DD60A4209EC4AC004B4085 /* NSManagedObject Extensions */,
 				E6DD609A209EB4DE004B4085 /* Genre+CoreDataClass.swift */,
 				E6DD609B209EB4DE004B4085 /* Genre+CoreDataProperties.swift */,
+				551EF5E020A67DC4007C92D4 /* DataController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				E66851DE209D6D38002C0CF9 /* ClientError.swift in Sources */,
 				E66851A9209D5C60002C0CF9 /* Game_List.xcdatamodeld in Sources */,
 				E66851A3209D5C60002C0CF9 /* ViewController.swift in Sources */,
+				551EF5E120A67DC4007C92D4 /* DataController.swift in Sources */,
 				E6DD60C3209EE505004B4085 /* GenreViewController.swift in Sources */,
 				E6DD609C209EB4DE004B4085 /* Genre+CoreDataClass.swift in Sources */,
 				E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */,
@@ -742,7 +746,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Game List/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Game List/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -764,7 +768,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Game List/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Game List/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
