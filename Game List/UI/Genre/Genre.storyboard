@@ -10,17 +10,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Genre View Controller-->
         <scene sceneID="6mX-gE-F1w">
             <objects>
-                <viewController id="lS2-2a-WgT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GenreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lS2-2a-WgT" customClass="GenreViewController" customModule="Game_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xlO-UM-Hzh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d8f-IL-eMT">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d8f-IL-eMT">
                                 <rect key="frame" x="0.0" y="44" width="375" height="685"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lS2-2a-WgT" id="YYE-gP-LXI"/>
+                                    <outlet property="delegate" destination="lS2-2a-WgT" id="Ysh-5v-3nJ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -33,6 +37,9 @@
                         <viewLayoutGuide key="safeArea" id="8PE-Wm-594"/>
                     </view>
                     <navigationItem key="navigationItem" id="5A2-Xf-GA8"/>
+                    <connections>
+                        <outlet property="tableView" destination="d8f-IL-eMT" id="06D-ZD-tKM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aap-HN-BLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
