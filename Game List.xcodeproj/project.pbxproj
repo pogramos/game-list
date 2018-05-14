@@ -17,6 +17,7 @@
 		5541CD3920A9393A00B981F4 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD3820A9393A00B981F4 /* DataController.swift */; };
 		5541CD3D20A93C1500B981F4 /* GameListClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD3C20A93C1400B981F4 /* GameListClientTests.swift */; };
 		5541CD4120A93CBB00B981F4 /* MemorySetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD4020A93CBB00B981F4 /* MemorySetup.swift */; };
+		5541CD4220A9442A00B981F4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551EF60220A6B2A3007C92D4 /* String+Extension.swift */; };
 		5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586343420A8E77400389C3A /* GCDBlackBox.swift */; };
 		5586343820A8E8BA00389C3A /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586343720A8E8BA00389C3A /* Dialog.swift */; };
 		5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4CB20A912A20012AA9B /* TabBarViewController.swift */; };
@@ -624,7 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				551EF5F420A6A3A3007C92D4 /* Game+CoreDataClass.swift in Sources */,
+				5541CD4220A9442A00B981F4 /* String+Extension.swift in Sources */,
 				E66851E7209D6DDD002C0CF9 /* IGDBApi.swift in Sources */,
 				5541CD3220A937E700B981F4 /* Screenshot+CoreDataClass.swift in Sources */,
 				E6DD60CB209EE57F004B4085 /* GenreTableViewCellViewModel.swift in Sources */,
@@ -637,8 +638,6 @@
 				E66851A1209D5C60002C0CF9 /* AppDelegate.swift in Sources */,
 				5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */,
 				E6DD60A8209EC94E004B4085 /* CodingUserInfoKey.swift in Sources */,
-				551EF5F220A6A3A3007C92D4 /* Genre+CoreDataClass.swift in Sources */,
-				551EF5F120A6A3A3007C92D4 /* Screenshot+CoreDataProperties.swift in Sources */,
 				E66851DC209D6D0D002C0CF9 /* ClientAPI.swift in Sources */,
 				5541CD2B20A937B700B981F4 /* AutoNSManagedCodableObject.generated.swift in Sources */,
 				5541CD3520A937E700B981F4 /* Game+CoreDataProperties.swift in Sources */,
@@ -650,7 +649,6 @@
 				E66851E2209D6D52002C0CF9 /* Constants.swift in Sources */,
 				5541CD3920A9393A00B981F4 /* DataController.swift in Sources */,
 				E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */,
-				551EF5F320A6A3A3007C92D4 /* Genre+CoreDataProperties.swift in Sources */,
 				E6DD60C5209EE513004B4085 /* GenreViewModel.swift in Sources */,
 				5541CD3720A937E700B981F4 /* Genre+CoreDataProperties.swift in Sources */,
 				5593D4CE20A91D760012AA9B /* Loader.swift in Sources */,
@@ -666,7 +664,6 @@
 				5541CD4120A93CBB00B981F4 /* MemorySetup.swift in Sources */,
 				5541CD3D20A93C1500B981F4 /* GameListClientTests.swift in Sources */,
 				E652CE72209E5CFD000B2619 /* GameListRequestBuilderTests.swift in Sources */,
-				551EF60120A6A984007C92D4 /* MemoryViewContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

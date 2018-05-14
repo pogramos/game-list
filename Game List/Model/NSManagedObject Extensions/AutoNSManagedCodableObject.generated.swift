@@ -19,13 +19,13 @@ extension Game: Codable {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(genres, forKey: .genres)
-      try container.encode(id, forKey: .id)
-      try container.encode(name, forKey: .name)
-      try container.encode(storyline, forKey: .storyline)
-      try container.encode(summary, forKey: .summary)
-      try container.encode(cover, forKey: .cover)
-      try container.encode(screenshots, forKey: .screenshots)
+          try container.encode(genres, forKey: .genres)
+          try container.encode(id, forKey: .id)
+          try container.encode(name, forKey: .name)
+          try container.encode(storyline, forKey: .storyline)
+          try container.encode(summary, forKey: .summary)
+          try container.encode(cover, forKey: .cover)
+          try container.encode(screenshots, forKey: .screenshots)
   }
 
   public func customDecoder(from decoder: Decoder) throws {
@@ -72,12 +72,12 @@ extension Genre: Codable {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(created_at, forKey: .created_at)
-      try container.encode(games, forKey: .games)
-      try container.encode(id, forKey: .id)
-      try container.encode(name, forKey: .name)
-      try container.encode(updated_at, forKey: .updated_at)
-      try container.encode(url, forKey: .url)
+          try container.encode(created_at, forKey: .created_at)
+          try container.encode(games, forKey: .games)
+          try container.encode(id, forKey: .id)
+          try container.encode(name, forKey: .name)
+          try container.encode(updated_at, forKey: .updated_at)
+          try container.encode(url, forKey: .url)
   }
 
   public func customDecoder(from decoder: Decoder) throws {
@@ -119,10 +119,10 @@ extension Screenshot: Codable {
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(url, forKey: .url)
-      try container.encode(data, forKey: .data)
-      try container.encode(cover_game, forKey: .cover_game)
-      try container.encode(screenshot_games, forKey: .screenshot_games)
+          try container.encode(url, forKey: .url)
+          try container.encode(data, forKey: .data)
+          try container.encode(cover_game, forKey: .cover_game)
+          try container.encode(screenshot_games, forKey: .screenshot_games)
   }
 
   public func customDecoder(from decoder: Decoder) throws {
