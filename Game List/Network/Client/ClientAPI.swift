@@ -6,7 +6,7 @@
 //  Copyright © 2018 Progeekt. All rights reserved.
 //
 
-import Foundation
+import CoreData
 
 class ClientAPI {
     typealias SuccessBlock<T> = (_ result: T?) -> Void
@@ -18,10 +18,14 @@ class ClientAPI {
         self.session = session
     }
 
-    func get<T: Decodable>(request: URLRequest, for type: T.Type, success: @escaping SuccessBlock<T>, failure: @escaping FailureBlock) {
+    func get<T: Decodable>(request: URLRequest, for type: T.Type, on context: NSManagedObjectContext, success: @escaping SuccessBlock<T>, failure: @escaping FailureBlock) {
         let task = taskHandler(request: request, success: { data in
             do {
-                let decoded = try JSONDecoder().decode(type, from: data)
+                let decoder = JSONDecoder()
+                if let contextKey = CodingUserInfoKey.context {
+                    decoder.userInfo[contextKey] = context
+                }
+                let decoded = try decoder.decode(type, from: data)
                 success(decoded)
             } catch let error {
                 failure(.decodeFailure(error))

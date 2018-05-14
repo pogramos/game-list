@@ -11,9 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let parameters = Parameters([
-            "fields": "id,name" as AnyObject
-            ])
 //        IGDBApi.getGenres(with: parameters, success: { (genres) in
 //            print(genres ?? "")
 //        }, failure: { (error) in
