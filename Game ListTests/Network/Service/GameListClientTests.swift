@@ -23,7 +23,7 @@ class GameListClientTests: QuickSpec {
                     it("should return a list of genres") {
                         waitUntil(timeout: 10) { done in
                             let parameters = Parameters([
-                                "fields": "id,name,created_at,updated_at,url" as AnyObject
+                                "fields": Genre.fields() as AnyObject
                                 ])
                             IGDBApi.getGenres(with: parameters, on: viewContext, success: { (genres) in
                                 expect(genres).toNot(beNil())
@@ -40,7 +40,7 @@ class GameListClientTests: QuickSpec {
                     it("should return a game") {
                         waitUntil(timeout: 10) { done in
                             let parameters = Parameters([
-                                "fields": "id,name,summary,storyline" as AnyObject
+                                "fields": Game.fields() as AnyObject
                                 ])
                             IGDBApi.getGame(for: 12, with: parameters, on: viewContext, success:  { games in
                                 expect(games).toNot(beNil())
@@ -57,7 +57,7 @@ class GameListClientTests: QuickSpec {
                     it("should return a list of games") {
                         waitUntil(timeout: 10) { done in
                             let parameters = Parameters([
-                                "fields": "id,name,summary,storyline" as AnyObject
+                                "fields": Game.fields() as AnyObject
                                 ])
                             IGDBApi.getGames(with: parameters, on: viewContext, success:  { games in
                                 expect(games).toNot(beNil())

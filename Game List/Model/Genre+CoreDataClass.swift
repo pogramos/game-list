@@ -2,7 +2,7 @@
 //  Genre+CoreDataClass.swift
 //  Game List
 //
-//  Created by Guilherme Ramos on 12/05/2018.
+//  Created by Guilherme Ramos on 14/05/2018.
 //  Copyright © 2018 Progeekt. All rights reserved.
 //
 //

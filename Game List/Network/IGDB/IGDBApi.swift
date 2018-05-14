@@ -81,6 +81,10 @@ extension IGDBApi {
         static let Accept = "Accept"
     }
 
+    struct ParameterKeys {
+        static let Fields = "fields"
+    }
+
     enum Method: CustomStringConvertible {
         case genre(Int?)
         case game(Int?)

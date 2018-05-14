@@ -2,7 +2,7 @@
 //  Screenshot+CoreDataClass.swift
 //  Game List
 //
-//  Created by Guilherme Ramos on 12/05/2018.
+//  Created by Guilherme Ramos on 14/05/2018.
 //  Copyright © 2018 Progeekt. All rights reserved.
 //
 //
@@ -12,10 +12,6 @@ import CoreData
 
 @objc(Screenshot)
 public class Screenshot: NSManagedObject {
-    /// title: "NSManagedObject Codable Initializer"
-    /// summary: "Initializes the object for a NSManagedObject conforming the codable protocol"
-    /// completion shortcut: initnsmanagedcodable
-    /// completion-scope: All
     public required convenience init(from decoder: Decoder) throws {
         let entityName = String(describing: Screenshot.self)
         guard let contextKey = CodingUserInfoKey.context else {

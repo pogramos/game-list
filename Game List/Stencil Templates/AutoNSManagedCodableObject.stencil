@@ -23,12 +23,17 @@ extension {{ type.name }}: Codable {
   public func customDecoder(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     {% for variable in type.variables %}
-      {% if variable|!annotated:"skippable" %}
+      {% if variable|!annotated:"skipPersistence" %}
       if values.contains(.{{variable.name}}) {
         {{ variable.name }} = try values.decode({{ variable.typeName.name }}.self, forKey: .{{ variable.name }})
       }
       {% endif %}
     {% endfor %}
+  }
+
+  class func fields() -> String {
+    let fields = "{% for variable in type.variables %}{% if variable|!annotated:"skippable" %}{{ variable.name }}{% if not forloop.last %},{% endif %}{% endif %}{% endfor %}"
+    return fields
   }
 }
 {% endfor %}
