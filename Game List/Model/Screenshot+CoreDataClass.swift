@@ -1,5 +1,5 @@
 //
-//  Genre+CoreDataClass.swift
+//  Screenshot+CoreDataClass.swift
 //  Game List
 //
 //  Created by Guilherme Ramos on 14/05/2018.
@@ -10,10 +10,10 @@
 import Foundation
 import CoreData
 
-@objc(Genre)
-public class Genre: NSManagedObject {
+@objc(Screenshot)
+public class Screenshot: NSManagedObject {
     public required convenience init(from decoder: Decoder) throws {
-        let entityName = String(describing: Genre.self)
+        let entityName = String(describing: Screenshot.self)
         guard let contextKey = CodingUserInfoKey.context else {
             fatalError("Could not find contextKey")
         }
