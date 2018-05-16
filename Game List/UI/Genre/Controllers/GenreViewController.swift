@@ -26,7 +26,12 @@ class GenreViewController: UIViewController {
     }
 
     func registerCells() {
-        tableView.register(UINib(nibName: viewModel.cellIdentifier, bundle: nil), forCellReuseIdentifier: viewModel.cellIdentifier)
+        let cellNib = UINib(nibName: viewModel.cellIdentifier, bundle: .main)
+        tableView.register(cellNib, forCellReuseIdentifier: viewModel.cellIdentifier)
+
+        let name = String(describing: GenreSectionHeader.self)
+        let headerNib = UINib(nibName: name, bundle: .main)
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: name)
     }
 }
 
@@ -42,10 +47,24 @@ extension GenreViewController: GenreViewModelDelegate {
 }
 
 extension GenreViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: GenreSectionHeader.self)) as? GenreSectionHeader else {
+            return nil
+        }
+        header.titleLabel.text = viewModel.genreTitle(at: section)
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.tableView.estimatedSectionHeaderHeight
+    }
 }
 
 extension GenreViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections()
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection(section: section)
     }

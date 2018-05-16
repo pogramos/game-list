@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5533F2FD20ABE8B80093D82B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5533F2FC20ABE8B80093D82B /* CardView.swift */; };
+		5533F2FF20ABE8E10093D82B /* CardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5533F2FE20ABE8E10093D82B /* CardUIView.swift */; };
 		5541CD2B20A937B700B981F4 /* AutoNSManagedCodableObject.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD2A20A937B700B981F4 /* AutoNSManagedCodableObject.generated.swift */; };
 		5541CD3220A937E700B981F4 /* Screenshot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD2C20A937E700B981F4 /* Screenshot+CoreDataClass.swift */; };
 		5541CD3320A937E700B981F4 /* Screenshot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD2D20A937E700B981F4 /* Screenshot+CoreDataProperties.swift */; };
@@ -18,6 +20,8 @@
 		5541CD3D20A93C1500B981F4 /* GameListClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD3C20A93C1400B981F4 /* GameListClientTests.swift */; };
 		5541CD4120A93CBB00B981F4 /* MemorySetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD4020A93CBB00B981F4 /* MemorySetup.swift */; };
 		5541CD4220A9442A00B981F4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551EF60220A6B2A3007C92D4 /* String+Extension.swift */; };
+		5573921220AC021C00267C9F /* GenreSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5573921120AC021C00267C9F /* GenreSectionHeader.xib */; };
+		5573921420AC025D00267C9F /* GenreSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5573921320AC025D00267C9F /* GenreSectionHeader.swift */; };
 		5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586343420A8E77400389C3A /* GCDBlackBox.swift */; };
 		5586343820A8E8BA00389C3A /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586343720A8E8BA00389C3A /* Dialog.swift */; };
 		5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4CB20A912A20012AA9B /* TabBarViewController.swift */; };
@@ -88,6 +92,8 @@
 
 /* Begin PBXFileReference section */
 		551EF60220A6B2A3007C92D4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		5533F2FC20ABE8B80093D82B /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		5533F2FE20ABE8E10093D82B /* CardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUIView.swift; sourceTree = "<group>"; };
 		5541CD2A20A937B700B981F4 /* AutoNSManagedCodableObject.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoNSManagedCodableObject.generated.swift; sourceTree = "<group>"; };
 		5541CD2C20A937E700B981F4 /* Screenshot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Screenshot+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5541CD2D20A937E700B981F4 /* Screenshot+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Screenshot+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 		5541CD3820A9393A00B981F4 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		5541CD3C20A93C1400B981F4 /* GameListClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListClientTests.swift; sourceTree = "<group>"; };
 		5541CD4020A93CBB00B981F4 /* MemorySetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorySetup.swift; sourceTree = "<group>"; };
+		5573921120AC021C00267C9F /* GenreSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreSectionHeader.xib; sourceTree = "<group>"; };
+		5573921320AC025D00267C9F /* GenreSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSectionHeader.swift; sourceTree = "<group>"; };
 		5586343420A8E77400389C3A /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		5586343720A8E8BA00389C3A /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		5593D4CB20A912A20012AA9B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -203,8 +211,10 @@
 		5586343620A8E8AA00389C3A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				5533F2FE20ABE8E10093D82B /* CardUIView.swift */,
 				5586343720A8E8BA00389C3A /* Dialog.swift */,
 				5593D4CD20A91D760012AA9B /* Loader.swift */,
+				5533F2FC20ABE8B80093D82B /* CardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -388,6 +398,7 @@
 				E6DD60BA209EE209004B4085 /* Genre.storyboard */,
 				E6DD60C7209EE567004B4085 /* GenreTableViewCell.xib */,
 				5593D4D820A92C6D0012AA9B /* GameTableViewCell.xib */,
+				5573921120AC021C00267C9F /* GenreSectionHeader.xib */,
 			);
 			path = Genre;
 			sourceTree = "<group>";
@@ -415,6 +426,7 @@
 				E6DD60C6209EE567004B4085 /* GenreTableViewCell.swift */,
 				E6DD60C2209EE505004B4085 /* GenreViewController.swift */,
 				5593D4D720A92C6D0012AA9B /* GameTableViewCell.swift */,
+				5573921320AC025D00267C9F /* GenreSectionHeader.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -547,6 +559,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5573921220AC021C00267C9F /* GenreSectionHeader.xib in Resources */,
 				E6DD60C9209EE567004B4085 /* GenreTableViewCell.xib in Resources */,
 				E66851AE209D5C62002C0CF9 /* LaunchScreen.storyboard in Resources */,
 				E6DD60B9209EE1EC004B4085 /* Game.storyboard in Resources */,
@@ -627,12 +640,14 @@
 			files = (
 				5541CD4220A9442A00B981F4 /* String+Extension.swift in Sources */,
 				E66851E7209D6DDD002C0CF9 /* IGDBApi.swift in Sources */,
+				5573921420AC025D00267C9F /* GenreSectionHeader.swift in Sources */,
 				5541CD3220A937E700B981F4 /* Screenshot+CoreDataClass.swift in Sources */,
 				E6DD60CB209EE57F004B4085 /* GenreTableViewCellViewModel.swift in Sources */,
 				E66851DE209D6D38002C0CF9 /* ClientError.swift in Sources */,
 				5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */,
 				E66851A9209D5C60002C0CF9 /* Game_List.xcdatamodeld in Sources */,
 				5586343820A8E8BA00389C3A /* Dialog.swift in Sources */,
+				5533F2FD20ABE8B80093D82B /* CardView.swift in Sources */,
 				E6DD60C3209EE505004B4085 /* GenreViewController.swift in Sources */,
 				E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */,
 				E66851A1209D5C60002C0CF9 /* AppDelegate.swift in Sources */,
@@ -653,6 +668,7 @@
 				5541CD3720A937E700B981F4 /* Genre+CoreDataProperties.swift in Sources */,
 				5593D4CE20A91D760012AA9B /* Loader.swift in Sources */,
 				E6DD60C8209EE567004B4085 /* GenreTableViewCell.swift in Sources */,
+				5533F2FF20ABE8E10093D82B /* CardUIView.swift in Sources */,
 				5541CD3620A937E700B981F4 /* Genre+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
