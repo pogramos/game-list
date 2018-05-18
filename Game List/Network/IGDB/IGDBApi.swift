@@ -9,10 +9,10 @@
 import CoreData
 
 class IGDBApi {
-    class func getGenres(with parameters: Parameters, on context: NSManagedObjectContext, success: @escaping ([Genre]?) -> Void, failure: @escaping (ClientError) -> Void) {
+    class func getGenres(with parameters: Parameters, success: @escaping ([Genre]?) -> Void, failure: @escaping (ClientError) -> Void) {
         do {
             let request = try build(method: .genre(nil), with: parameters)
-            ClientAPI().get(request: request, for: [Genre].self, on: context, success: { genres in
+            ClientAPI().get(request: request, for: [Genre].self, success: { genres in
                 success(genres)
             }, failure: { error in
                 failure(error ?? .error(nil))
@@ -22,10 +22,10 @@ class IGDBApi {
         }
     }
 
-    class func getGames(with parameters: Parameters, on context: NSManagedObjectContext, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
+    class func getGames(with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
         do {
             let request = try build(method: .game(nil), with: parameters)
-            ClientAPI().get(request: request, for: [Game].self, on: context, success: { games in
+            ClientAPI().get(request: request, for: [Game].self, success: { games in
                 success(games)
             }, failure: { error in
                 failure(error ?? .error(nil))
@@ -35,10 +35,10 @@ class IGDBApi {
         }
     }
 
-    class func getGame(for id: Int, with parameters: Parameters, on context: NSManagedObjectContext, success: @escaping (Game?) -> Void, failure: @escaping (ClientError) -> Void) {
+    class func getGame(for id: Int, with parameters: Parameters, success: @escaping (Game?) -> Void, failure: @escaping (ClientError) -> Void) {
         do {
             let request = try build(method: .game(id), with: parameters)
-            ClientAPI().get(request: request, for: [Game].self, on: context, success: { games in
+            ClientAPI().get(request: request, for: [Game].self, success: { games in
                 success(games?.first)
             }, failure: { error in
                 failure(error ?? .error(nil))
@@ -46,6 +46,26 @@ class IGDBApi {
         } catch let err {
             failure(.error(err))
         }
+    }
+
+    /// Download images from url's
+    ///
+    /// - Parameters:
+    ///   - url: url string of an image
+    ///   - completion: completion block to execute after the proccess is finished
+    class func downloadImage(from url: String, completion: @escaping (Data?, String?) -> Void) {
+        let imageURL = URL(string: url)
+        let request = URLRequest(url: imageURL!)
+        let task = ClientAPI().taskHandler(request: request, success: { data in
+            performUIUpdatesOnMain {
+                completion(data, nil)
+            }
+        }, failure: { error in
+            performUIUpdatesOnMain {
+                completion(nil, error?.localizedDescription)
+            }
+        })
+        task.resume()
     }
 }
 

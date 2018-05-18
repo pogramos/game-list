@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Game" representedClassName="Game" syncable="YES">
+    <entity name="CoreDataGame" representedClassName="CoreDataGame" syncable="YES">
+        <attribute name="cover" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="genres" optional="YES" attributeType="Transformable" customClassName="Set&lt;Int&gt;" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="screenshots" optional="YES" attributeType="Transformable" customClassName="Set&lt;Data&gt;" syncable="YES"/>
         <attribute name="storyline" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="cover" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Screenshot" inverseName="cover_game" inverseEntity="Screenshot" syncable="YES"/>
-        <relationship name="screenshots" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Screenshot" inverseName="screenshot_games" inverseEntity="Screenshot" syncable="YES"/>
     </entity>
-    <entity name="Genre" representedClassName="Genre" syncable="YES">
+    <entity name="CoreDataGenre" representedClassName="CoreDataGenre" syncable="YES">
         <attribute name="created_at" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="games" optional="YES" attributeType="Transformable" customClassName="Set&lt;Int&gt;" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -17,15 +17,8 @@
         <attribute name="updated_at" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Screenshot" representedClassName="Screenshot" syncable="YES">
-        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="cover_game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="cover" inverseEntity="Game" syncable="YES"/>
-        <relationship name="screenshot_games" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="screenshots" inverseEntity="Game" syncable="YES"/>
-    </entity>
     <elements>
-        <element name="Game" positionX="-317" positionY="-55" width="128" height="150"/>
-        <element name="Genre" positionX="-162" positionY="-198" width="128" height="135"/>
-        <element name="Screenshot" positionX="-90" positionY="-25" width="128" height="103"/>
+        <element name="CoreDataGame" positionX="-317" positionY="-55" width="128" height="150"/>
+        <element name="CoreDataGenre" positionX="-162" positionY="-198" width="128" height="135"/>
     </elements>
 </model>

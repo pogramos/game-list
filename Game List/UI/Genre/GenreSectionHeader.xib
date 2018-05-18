@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="M7I-Yd-GoW" customClass="GenreSectionHeader" customModule="Game_List" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FnA-BZ-ybC" customClass="CardUIView" customModule="Game_List" customModuleProvider="target">
+                    <rect key="frame" x="8" y="8" width="359" height="84"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnX-3a-jmL">
+                            <rect key="frame" x="20" y="0.0" width="339" height="84"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="vnX-3a-jmL" firstAttribute="leading" secondItem="FnA-BZ-ybC" secondAttribute="leading" constant="20" symbolic="YES" id="S69-Fh-TjV"/>
+                        <constraint firstAttribute="bottom" secondItem="vnX-3a-jmL" secondAttribute="bottom" id="X0w-uc-tP4"/>
+                        <constraint firstItem="vnX-3a-jmL" firstAttribute="top" secondItem="FnA-BZ-ybC" secondAttribute="top" id="ekg-dk-tfC"/>
+                        <constraint firstAttribute="trailing" secondItem="vnX-3a-jmL" secondAttribute="trailing" id="roF-3v-EBW"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="cS9-DI-8pG" firstAttribute="bottom" secondItem="FnA-BZ-ybC" secondAttribute="bottom" constant="8" id="CsX-ST-t3b"/>
+                <constraint firstItem="FnA-BZ-ybC" firstAttribute="top" secondItem="cS9-DI-8pG" secondAttribute="top" constant="8" id="Exr-AU-ML4"/>
+                <constraint firstItem="FnA-BZ-ybC" firstAttribute="leading" secondItem="cS9-DI-8pG" secondAttribute="leading" constant="8" id="hG5-Zu-5wA"/>
+                <constraint firstItem="cS9-DI-8pG" firstAttribute="trailing" secondItem="FnA-BZ-ybC" secondAttribute="trailing" constant="8" id="zHD-Wd-Wy6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="cS9-DI-8pG"/>
+            <connections>
+                <outlet property="titleLabel" destination="vnX-3a-jmL" id="Qt8-Cq-lWp"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="112"/>
+        </view>
+    </objects>
+</document>
