@@ -12,5 +12,5 @@ import CoreData
 
 @objc(CoreDataGenre)
 public class CoreDataGenre: NSManagedObject {
-
+    var items: [Game]?
 }

@@ -34,23 +34,18 @@ class GenreViewController: UIViewController {
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: name)
     }
 
-    @objc func showAlert(sender: GenreSectionHeader) {
-        var message = "Mensagem"
-        if let index = sender.index {
-            let genre = viewModel.genre(at: IndexPath(row: 0, section: index))
-            message = genre.name!
+    @objc func expandSection(sender: UIGestureRecognizer) {
+        guard let view = sender.view else {
+            return
         }
-        let alertController = UIAlertController(title: "Genero", message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(alertAction)
-
-        present(alertController, animated: true, completion: nil)
+        Loader.show(on: self.tabBarController)
+        viewModel.fetchGames(for: view.tag)
     }
 }
 
 extension GenreViewController: GenreViewModelDelegate {
-    func updateUI(section: Int) {
-        
+    func updateUI(with indexSet: IndexSet) {
+        tableView.reloadSections(indexSet, with: .fade)
     }
 
     func updateUI() {
@@ -68,7 +63,10 @@ extension GenreViewController: UITableViewDelegate {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: GenreSectionHeader.self)) as? GenreSectionHeader else {
             return nil
         }
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(expandSection(sender:)))
+        header.tag = section
         header.titleLabel.text = viewModel.genreTitle(at: section)
+        header.gestureRecognizers = [gesture]
         return header
     }
 
@@ -87,11 +85,6 @@ extension GenreViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellIdentifier) as? GenreTableViewCell {
-            cell.viewModel = GenreTableViewCellViewModel(with: viewModel.genre(at: indexPath))
-            cell.configureCell()
-            return cell
-        }
         return UITableViewCell()
     }
 }

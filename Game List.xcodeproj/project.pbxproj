@@ -21,6 +21,16 @@
 		5593D4CE20A91D760012AA9B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4CD20A91D760012AA9B /* Loader.swift */; };
 		5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4D720A92C6D0012AA9B /* GameTableViewCell.swift */; };
 		5593D4DA20A92C6E0012AA9B /* GameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5593D4D820A92C6D0012AA9B /* GameTableViewCell.xib */; };
+		55D36C1B20AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1720AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift */; };
+		55D36C1C20AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1820AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift */; };
+		55D36C1D20AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */; };
+		55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */; };
+		55D36C2220AFEC9100934E76 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1F20AFEC9000934E76 /* Game.swift */; };
+		55D36C2320AFEC9100934E76 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2020AFEC9000934E76 /* Genre.swift */; };
+		55D36C2420AFEC9100934E76 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2120AFEC9100934E76 /* Image.swift */; };
+		55D36C2820AFECB000934E76 /* Image+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2520AFECB000934E76 /* Image+Codable.swift */; };
+		55D36C2920AFECB000934E76 /* Game+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2620AFECB000934E76 /* Game+Codable.swift */; };
+		55D36C2A20AFECB000934E76 /* Genre+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2720AFECB000934E76 /* Genre+Codable.swift */; };
 		E652CE72209E5CFD000B2619 /* GameListRequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE71209E5CFD000B2619 /* GameListRequestBuilderTests.swift */; };
 		E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE74209E5D15000B2619 /* RequestBuilder.swift */; };
 		E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE78209E5DA7000B2619 /* Parameters.swift */; };
@@ -97,6 +107,16 @@
 		5593D4CD20A91D760012AA9B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		5593D4D720A92C6D0012AA9B /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 		5593D4D820A92C6D0012AA9B /* GameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTableViewCell.xib; sourceTree = "<group>"; };
+		55D36C1720AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGame+CoreDataClass.swift"; sourceTree = "<group>"; };
+		55D36C1820AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGame+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataClass.swift"; sourceTree = "<group>"; };
+		55D36C1F20AFEC9000934E76 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		55D36C2020AFEC9000934E76 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		55D36C2120AFEC9100934E76 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		55D36C2520AFECB000934E76 /* Image+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Codable.swift"; sourceTree = "<group>"; };
+		55D36C2620AFECB000934E76 /* Game+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+Codable.swift"; sourceTree = "<group>"; };
+		55D36C2720AFECB000934E76 /* Genre+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Genre+Codable.swift"; sourceTree = "<group>"; };
 		E652CE71209E5CFD000B2619 /* GameListRequestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListRequestBuilderTests.swift; sourceTree = "<group>"; };
 		E652CE74209E5D15000B2619 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		E652CE78209E5DA7000B2619 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
@@ -195,9 +215,9 @@
 		5573923120AE886000267C9F /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				5573923220AE886000267C9F /* Genre+Codable.swift */,
-				5573923320AE886000267C9F /* Game+Codable.swift */,
-				5573923420AE886000267C9F /* Image+Codable.swift */,
+				55D36C2620AFECB000934E76 /* Game+Codable.swift */,
+				55D36C2720AFECB000934E76 /* Genre+Codable.swift */,
+				55D36C2520AFECB000934E76 /* Image+Codable.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -334,14 +354,14 @@
 		E66851E8209D6E0F002C0CF9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5573921720AE79B600267C9F /* Genre.swift */,
-				5573921920AE7A3A00267C9F /* Game.swift */,
-				5573922720AE7B0800267C9F /* Image.swift */,
+				55D36C1F20AFEC9000934E76 /* Game.swift */,
+				55D36C2020AFEC9000934E76 /* Genre.swift */,
+				55D36C2120AFEC9100934E76 /* Image.swift */,
+				55D36C1720AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift */,
+				55D36C1820AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift */,
+				55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */,
+				55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */,
 				5573923120AE886000267C9F /* Generated */,
-				5573922920AE7C8800267C9F /* CoreDataGame+CoreDataClass.swift */,
-				5573922A20AE7C8800267C9F /* CoreDataGame+CoreDataProperties.swift */,
-				5573922B20AE7C8800267C9F /* CoreDataGenre+CoreDataClass.swift */,
-				5573922C20AE7C8800267C9F /* CoreDataGenre+CoreDataProperties.swift */,
 				5541CD3820A9393A00B981F4 /* DataController.swift */,
 				E66851A7209D5C60002C0CF9 /* Game_List.xcdatamodeld */,
 			);
@@ -626,35 +646,35 @@
 			files = (
 				5541CD4220A9442A00B981F4 /* String+Extension.swift in Sources */,
 				E66851E7209D6DDD002C0CF9 /* IGDBApi.swift in Sources */,
+				55D36C2420AFEC9100934E76 /* Image.swift in Sources */,
 				5573921420AC025D00267C9F /* GenreSectionHeader.swift in Sources */,
-				5573921820AE79B600267C9F /* Genre.swift in Sources */,
-				5573922820AE7B0800267C9F /* Image.swift in Sources */,
 				E6DD60CB209EE57F004B4085 /* GenreTableViewCellViewModel.swift in Sources */,
+				55D36C2920AFECB000934E76 /* Game+Codable.swift in Sources */,
 				E66851DE209D6D38002C0CF9 /* ClientError.swift in Sources */,
+				55D36C2820AFECB000934E76 /* Image+Codable.swift in Sources */,
+				55D36C2A20AFECB000934E76 /* Genre+Codable.swift in Sources */,
 				5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */,
-				5573923520AE886000267C9F /* Genre+Codable.swift in Sources */,
-				5573922D20AE7C8800267C9F /* CoreDataGame+CoreDataClass.swift in Sources */,
 				E66851A9209D5C60002C0CF9 /* Game_List.xcdatamodeld in Sources */,
 				5586343820A8E8BA00389C3A /* Dialog.swift in Sources */,
 				5533F2FD20ABE8B80093D82B /* CardView.swift in Sources */,
+				55D36C2320AFEC9100934E76 /* Genre.swift in Sources */,
 				E6DD60C3209EE505004B4085 /* GenreViewController.swift in Sources */,
 				E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */,
-				5573921A20AE7A3A00267C9F /* Game.swift in Sources */,
 				E66851A1209D5C60002C0CF9 /* AppDelegate.swift in Sources */,
-				5573922E20AE7C8800267C9F /* CoreDataGame+CoreDataProperties.swift in Sources */,
-				5573923720AE886000267C9F /* Image+Codable.swift in Sources */,
+				55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */,
 				5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */,
+				55D36C1B20AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift in Sources */,
 				E66851DC209D6D0D002C0CF9 /* ClientAPI.swift in Sources */,
-				5573922F20AE7C8800267C9F /* CoreDataGenre+CoreDataClass.swift in Sources */,
+				55D36C2220AFEC9100934E76 /* Game.swift in Sources */,
 				5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */,
 				E6DD60A0209EBBCB004B4085 /* AutoNSManagedCodableObject.swift in Sources */,
 				E66851E4209D6DA6002C0CF9 /* ClientProtocol.swift in Sources */,
 				E66851E2209D6D52002C0CF9 /* Constants.swift in Sources */,
 				5541CD3920A9393A00B981F4 /* DataController.swift in Sources */,
-				5573923020AE7C8800267C9F /* CoreDataGenre+CoreDataProperties.swift in Sources */,
 				E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */,
-				5573923620AE886000267C9F /* Game+Codable.swift in Sources */,
 				E6DD60C5209EE513004B4085 /* GenreViewModel.swift in Sources */,
+				55D36C1C20AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift in Sources */,
+				55D36C1D20AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift in Sources */,
 				5593D4CE20A91D760012AA9B /* Loader.swift in Sources */,
 				E6DD60C8209EE567004B4085 /* GenreTableViewCell.swift in Sources */,
 				5533F2FF20ABE8E10093D82B /* CardUIView.swift in Sources */,

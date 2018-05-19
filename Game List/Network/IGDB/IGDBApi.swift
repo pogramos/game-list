@@ -22,17 +22,22 @@ class IGDBApi {
         }
     }
 
-    class func getGames(with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
-        do {
-            let request = try build(method: .game(nil), with: parameters)
-            ClientAPI().get(request: request, for: [Game].self, success: { games in
-                success(games)
-            }, failure: { error in
-                failure(error ?? .error(nil))
-            })
-        } catch let err {
-            failure(.error(err))
+    class func getGames(for genre: Genre, with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
+        if let id = genre.id {
+            do {
+                let request = try build(method: .game(Int(id)), with: parameters)
+                ClientAPI().get(request: request, for: [Game].self, success: { games in
+                    success(games)
+                }, failure: { error in
+                    failure(error ?? .error(nil))
+                })
+            } catch let err {
+                failure(.error(err))
+            }
+        } else {
+            failure(.error(nil))
         }
+
     }
 
     class func getGame(for id: Int, with parameters: Parameters, success: @escaping (Game?) -> Void, failure: @escaping (ClientError) -> Void) {

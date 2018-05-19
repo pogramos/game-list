@@ -15,8 +15,8 @@ protocol GenreViewModelDelegate: class {
 
     /// Tells the delegate to update the tableView section on
     ///
-    /// - Parameter section: index of the reloading section
-    func updateUI(section: Int)
+    /// - Parameter indexPaths: index of the reloading section
+    func updateUI(with indexSet: IndexSet)
 
     /// Tells the delegate to show a dialog for the current viewcontroller
     /// indicating that the operation failed, sending the message
@@ -25,11 +25,15 @@ protocol GenreViewModelDelegate: class {
     func showErrorOnUI(_ message: String)
 }
 
+public enum GenreOperation {
+    case add, delete
+}
+
 class GenreViewModel {
     let cellIdentifier = "GenreTableViewCell"
     weak var delegate: GenreViewModelDelegate!
 
-    var openGenre: Genre?
+    var genres: [Genre]?
 
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<CoreDataGenre> = makeFetchedResultsController()
 
@@ -46,7 +50,24 @@ class GenreViewModel {
         return fetchedResultsController
     }
 
-    fileprivate func save(genres: [Genre]?) {
+    fileprivate func downloadGenres() {
+        let parameters = Parameters([
+            IGDBApi.ParameterKeys.Fields: Genre.fields() as AnyObject
+            ])
+        IGDBApi.getGenres(with: parameters, success: { genres in
+            self.genres = genres
+            self.save()
+            performUIUpdatesOnMain {
+                self.delegate.updateUI()
+            }
+        }, failure: { (error) in
+            performUIUpdatesOnMain {
+                self.delegate.showErrorOnUI(error.localizedDescription)
+            }
+        })
+    }
+
+    fileprivate func save() {
         if let genres = genres {
             for genre in genres {
                 _ = genre.toCoreData(on: DataController.shared.viewContext)
@@ -58,23 +79,16 @@ class GenreViewModel {
     }
 
     func numberOfSections() -> Int {
-        return fetchedResultsController.fetchedObjects?.count ?? 0
+        return genres?.count ?? 0
     }
 
     func numberOfItemsInSection(section: Int) -> Int {
-//        if let games = openGenre?.games {
-//            return games.count
-//        }
-        return 0
+        return genres?[section].games?.count ?? 0
     }
 
     // MARK: Genres
     func genreTitle(at section: Int) -> String {
-        return fetchedResultsController.sections?[section].name ?? ""
-    }
-
-    func genre(at indexPath: IndexPath) -> Genre {
-        return fetchedResultsController.object(at: indexPath).toModel()
+        return genres?[section].name ?? ""
     }
 
     /// Fetch a collection of genres from the service
@@ -85,38 +99,39 @@ class GenreViewModel {
             fatalError("Unresolved error \(error)")
         }
 
-        if let genres = fetchedResultsController.fetchedObjects, genres.count > 0 {
+        if let objects = fetchedResultsController.fetchedObjects, objects.count > 0 {
+            genres = []
+            for object in objects {
+                genres?.append(object.toModel())
+            }
             self.delegate.updateUI()
         } else {
-            let parameters = Parameters([
-                IGDBApi.ParameterKeys.Fields: Genre.fields() as AnyObject
-                ])
-            IGDBApi.getGenres(with: parameters, success: { genres in
-                self.save(genres: genres)
-                performUIUpdatesOnMain {
-                    self.delegate.updateUI()
-                }
-            }, failure: { (error) in
-                performUIUpdatesOnMain {
-                    self.delegate.showErrorOnUI(error.localizedDescription)
-                }
-            })
+            downloadGenres()
         }
     }
 
     // MARK: Games
-    func game(at indexPath: IndexPath) -> Game {
-        return Game()
+    func game(at indexPath: IndexPath) -> Game? {
+        return genres?[indexPath.section].games?[indexPath.row]
     }
 
-    func fetchGames(for genre: Genre) {
+    func fetchGames(for section: Int) {
+        guard let genre = genres?[section] else {
+            return
+        }
         let parameters = Parameters([
             IGDBApi.ParameterKeys.Fields: Game.fields() as AnyObject
             ])
-        IGDBApi.getGames(with: parameters, success: { (games) in
-
+        IGDBApi.getGames(for: genre, with: parameters, success: { games in
+            self.genres?[section].games = games
+            performUIUpdatesOnMain {
+                let set = IndexSet(arrayLiteral: section)
+                self.delegate.updateUI(with: set)
+            }
         }, failure: { (error) in
-
+            performUIUpdatesOnMain {
+                self.delegate.showErrorOnUI(error.localizedDescription)
+            }
         })
     }
 }
