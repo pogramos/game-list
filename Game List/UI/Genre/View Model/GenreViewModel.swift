@@ -39,7 +39,7 @@ class GenreViewModel {
         let fetchedResultsController: NSFetchedResultsController<CoreDataGenre> = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: DataController.shared.viewContext,
-            sectionNameKeyPath: nil,
+            sectionNameKeyPath: "name",
             cacheName: "Genres"
         )
 
@@ -57,7 +57,7 @@ class GenreViewModel {
         try? fetchedResultsController.performFetch()
     }
 
-    func numberOfItemsInSection(section: Int) -> Int {
+    func numberOfSections() -> Int {
         return fetchedResultsController.fetchedObjects?.count ?? 0
     }
 
