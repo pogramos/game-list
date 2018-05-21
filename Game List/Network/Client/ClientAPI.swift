@@ -48,12 +48,12 @@ class ClientAPI {
             }
 
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {
-                failure(.unauthorized(error))
+                failure(.unauthorized(self.customError("You're not authorized to access this resource")))
                 return
             }
 
             guard statusCode >= 200 && statusCode <= 299 else {
-                failure(.networkFailure(error))
+                failure(.networkFailure(self.customError("Request failed with status code of \(statusCode)")))
                 return
             }
 
@@ -63,5 +63,11 @@ class ClientAPI {
                 failure(.noResultsFound(error))
             }
         })
+    }
+
+    fileprivate func customError(_ description: String) -> Error {
+        let userInfo:[String: Any] = [NSLocalizedDescriptionKey: description]
+        let error = NSError(domain: "network", code: 0, userInfo: userInfo)
+        return error as Error
     }
 }

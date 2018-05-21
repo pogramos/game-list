@@ -51,10 +51,7 @@ class GenreViewModel {
     }
 
     fileprivate func downloadGenres() {
-        let parameters = Parameters([
-            IGDBApi.ParameterKeys.Fields: Genre.fields() as AnyObject
-            ])
-        IGDBApi.getGenres(with: parameters, success: { genres in
+        IGDBApi.getGenres(with: Parameters(), success: { genres in
             self.genres = genres
             self.save()
             performUIUpdatesOnMain {
@@ -119,10 +116,7 @@ class GenreViewModel {
         guard let genre = genres?[section] else {
             return
         }
-        let parameters = Parameters([
-            IGDBApi.ParameterKeys.Fields: Game.fields() as AnyObject
-            ])
-        IGDBApi.getGames(for: genre, with: parameters, success: { games in
+        IGDBApi.getGames(for: genre, with: Parameters(), success: { games in
             self.genres?[section].games = games
             performUIUpdatesOnMain {
                 let set = IndexSet(arrayLiteral: section)

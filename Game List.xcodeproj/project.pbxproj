@@ -31,6 +31,7 @@
 		55D36C2820AFECB000934E76 /* Image+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2520AFECB000934E76 /* Image+Codable.swift */; };
 		55D36C2920AFECB000934E76 /* Game+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2620AFECB000934E76 /* Game+Codable.swift */; };
 		55D36C2A20AFECB000934E76 /* Genre+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C2720AFECB000934E76 /* Genre+Codable.swift */; };
+		55D36C2C20B288B000934E76 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55D36C2B20B288B000934E76 /* Localizable.strings */; };
 		E652CE72209E5CFD000B2619 /* GameListRequestBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE71209E5CFD000B2619 /* GameListRequestBuilderTests.swift */; };
 		E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE74209E5D15000B2619 /* RequestBuilder.swift */; };
 		E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652CE78209E5DA7000B2619 /* Parameters.swift */; };
@@ -47,7 +48,6 @@
 		E66851D7209D6A9B002C0CF9 /* Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66851D6209D6A9B002C0CF9 /* Hero.framework */; };
 		E66851DC209D6D0D002C0CF9 /* ClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66851DB209D6D0D002C0CF9 /* ClientAPI.swift */; };
 		E66851DE209D6D38002C0CF9 /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66851DD209D6D38002C0CF9 /* ClientError.swift */; };
-		E66851E2209D6D52002C0CF9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66851E1209D6D52002C0CF9 /* Constants.swift */; };
 		E66851E4209D6DA6002C0CF9 /* ClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66851E3209D6DA6002C0CF9 /* ClientProtocol.swift */; };
 		E66851E7209D6DDD002C0CF9 /* IGDBApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66851E6209D6DDD002C0CF9 /* IGDBApi.swift */; };
 		E6DD60A0209EBBCB004B4085 /* AutoNSManagedCodableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DD609F209EBBCB004B4085 /* AutoNSManagedCodableObject.swift */; };
@@ -117,6 +117,7 @@
 		55D36C2520AFECB000934E76 /* Image+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Codable.swift"; sourceTree = "<group>"; };
 		55D36C2620AFECB000934E76 /* Game+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+Codable.swift"; sourceTree = "<group>"; };
 		55D36C2720AFECB000934E76 /* Genre+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Genre+Codable.swift"; sourceTree = "<group>"; };
+		55D36C2B20B288B000934E76 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E652CE71209E5CFD000B2619 /* GameListRequestBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListRequestBuilderTests.swift; sourceTree = "<group>"; };
 		E652CE74209E5D15000B2619 /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		E652CE78209E5DA7000B2619 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		E66851D6209D6A9B002C0CF9 /* Hero.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hero.framework; path = Carthage/Build/iOS/Hero.framework; sourceTree = "<group>"; };
 		E66851DB209D6D0D002C0CF9 /* ClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAPI.swift; sourceTree = "<group>"; };
 		E66851DD209D6D38002C0CF9 /* ClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientError.swift; sourceTree = "<group>"; };
-		E66851E1209D6D52002C0CF9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E66851E3209D6DA6002C0CF9 /* ClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProtocol.swift; sourceTree = "<group>"; };
 		E66851E6209D6DDD002C0CF9 /* IGDBApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDBApi.swift; sourceTree = "<group>"; };
 		E6DD609F209EBBCB004B4085 /* AutoNSManagedCodableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoNSManagedCodableObject.swift; sourceTree = "<group>"; };
@@ -328,19 +328,10 @@
 		E66851DF209D6D41002C0CF9 /* Convenience */ = {
 			isa = PBXGroup;
 			children = (
-				E66851E0209D6D48002C0CF9 /* Constants */,
 				551EF60220A6B2A3007C92D4 /* String+Extension.swift */,
 				5586343420A8E77400389C3A /* GCDBlackBox.swift */,
 			);
 			path = Convenience;
-			sourceTree = "<group>";
-		};
-		E66851E0209D6D48002C0CF9 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				E66851E1209D6D52002C0CF9 /* Constants.swift */,
-			);
-			path = Constants;
 			sourceTree = "<group>";
 		};
 		E66851E5209D6DCF002C0CF9 /* IGDB */ = {
@@ -453,6 +444,7 @@
 				E66851AA209D5C62002C0CF9 /* Assets.xcassets */,
 				E66851AC209D5C62002C0CF9 /* LaunchScreen.storyboard */,
 				E66851AF209D5C62002C0CF9 /* Info.plist */,
+				55D36C2B20B288B000934E76 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -570,6 +562,7 @@
 				E66851AE209D5C62002C0CF9 /* LaunchScreen.storyboard in Resources */,
 				E6DD60B9209EE1EC004B4085 /* Game.storyboard in Resources */,
 				5593D4DA20A92C6E0012AA9B /* GameTableViewCell.xib in Resources */,
+				55D36C2C20B288B000934E76 /* Localizable.strings in Resources */,
 				E6DD60BF209EE2EE004B4085 /* Favorite.storyboard in Resources */,
 				E66851AB209D5C62002C0CF9 /* Assets.xcassets in Resources */,
 				E66851A6209D5C60002C0CF9 /* Main.storyboard in Resources */,
@@ -669,7 +662,6 @@
 				5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */,
 				E6DD60A0209EBBCB004B4085 /* AutoNSManagedCodableObject.swift in Sources */,
 				E66851E4209D6DA6002C0CF9 /* ClientProtocol.swift in Sources */,
-				E66851E2209D6D52002C0CF9 /* Constants.swift in Sources */,
 				5541CD3920A9393A00B981F4 /* DataController.swift in Sources */,
 				E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */,
 				E6DD60C5209EE513004B4085 /* GenreViewModel.swift in Sources */,

@@ -10,6 +10,8 @@ import CoreData
 
 class IGDBApi {
     class func getGenres(with parameters: Parameters, success: @escaping ([Genre]?) -> Void, failure: @escaping (ClientError) -> Void) {
+        var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Genre.fields() as AnyObject)
         do {
             let request = try build(method: .genre(nil), with: parameters)
             ClientAPI().get(request: request, for: [Genre].self, success: { genres in
@@ -23,9 +25,12 @@ class IGDBApi {
     }
 
     class func getGames(for genre: Genre, with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
+        var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
         if let id = genre.id {
+            parameters.addParameter(IGDBApi.ParameterKeys.FilterGenre, value: id as AnyObject)
             do {
-                let request = try build(method: .game(Int(id)), with: parameters)
+                let request = try build(method: .game(nil), with: parameters)
                 ClientAPI().get(request: request, for: [Game].self, success: { games in
                     success(games)
                 }, failure: { error in
@@ -41,6 +46,8 @@ class IGDBApi {
     }
 
     class func getGame(for id: Int, with parameters: Parameters, success: @escaping (Game?) -> Void, failure: @escaping (ClientError) -> Void) {
+        var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
         do {
             let request = try build(method: .game(id), with: parameters)
             ClientAPI().get(request: request, for: [Game].self, success: { games in
@@ -108,6 +115,7 @@ extension IGDBApi {
 
     struct ParameterKeys {
         static let Fields = "fields"
+        static let FilterGenre = "filter[genres][eq]"
     }
 
     enum Method: CustomStringConvertible {

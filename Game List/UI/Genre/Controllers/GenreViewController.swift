@@ -26,8 +26,7 @@ class GenreViewController: UIViewController {
     }
 
     func registerCells() {
-        let cellNib = UINib(nibName: viewModel.cellIdentifier, bundle: .main)
-        tableView.register(cellNib, forCellReuseIdentifier: viewModel.cellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
         let name = String(describing: GenreSectionHeader.self)
         let headerNib = UINib(nibName: name, bundle: .main)
@@ -35,26 +34,29 @@ class GenreViewController: UIViewController {
     }
 
     @objc func expandSection(sender: UIGestureRecognizer) {
-        guard let view = sender.view else {
-            return
-        }
-        Loader.show(on: self.tabBarController)
-        viewModel.fetchGames(for: view.tag)
     }
 }
 
 extension GenreViewController: GenreViewModelDelegate {
     func updateUI(with indexSet: IndexSet) {
+        Loader.hide()
         tableView.reloadSections(indexSet, with: .fade)
     }
 
     func updateUI() {
-        tableView.reloadData()
         Loader.hide()
+        tableView.reloadData()
     }
 
     func showErrorOnUI(_ message: String) {
         Dialog.show(on: self, text: message)
+    }
+}
+
+extension GenreViewController: GenreSectionHeaderDelegate {
+    func didSelectSectionHeader(at index: NSInteger) {
+        Loader.show(on: self.tabBarController)
+        viewModel.fetchGames(for: index)
     }
 }
 
@@ -63,10 +65,9 @@ extension GenreViewController: UITableViewDelegate {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: GenreSectionHeader.self)) as? GenreSectionHeader else {
             return nil
         }
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(expandSection(sender:)))
+        header.delegate = self
         header.tag = section
         header.titleLabel.text = viewModel.genreTitle(at: section)
-        header.gestureRecognizers = [gesture]
         return header
     }
 
@@ -85,6 +86,8 @@ extension GenreViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = viewModel.game(at: indexPath)?.name
+        return cell
     }
 }

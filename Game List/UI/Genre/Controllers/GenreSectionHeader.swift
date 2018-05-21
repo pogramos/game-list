@@ -8,7 +8,30 @@
 
 import UIKit
 
+protocol GenreSectionHeaderDelegate: class {
+
+    /// Tells the delegate the section header was tapped
+    ///
+    /// - Parameter index: selected uiview tag
+    func didSelectSectionHeader(at index: NSInteger)
+}
+
 class GenreSectionHeader: UITableViewHeaderFooterView {
+    @IBOutlet weak var cardView: CardUIView!
+
+    weak var delegate: GenreSectionHeaderDelegate!
+    var tapGesture: UITapGestureRecognizer!
+
     @IBOutlet weak var titleLabel: UILabel!
-    var index: Int?
+
+    override func awakeFromNib() {
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleSelection(_:)))
+        self.gestureRecognizers = [tapGesture]
+    }
+
+    @objc @IBAction private func handleSelection(_ recognizer: UITapGestureRecognizer) {
+        if let view = recognizer.view {
+            self.delegate.didSelectSectionHeader(at: view.tag)
+        }
+    }
 }
