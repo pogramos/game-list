@@ -18,14 +18,10 @@ class ClientAPI {
         self.session = session
     }
 
-    func get<T: Decodable>(request: URLRequest, for type: T.Type, on context: NSManagedObjectContext, success: @escaping SuccessBlock<T>, failure: @escaping FailureBlock) {
+    func get<T: Decodable>(request: URLRequest, for type: T.Type, success: @escaping SuccessBlock<T>, failure: @escaping FailureBlock) {
         let task = taskHandler(request: request, success: { data in
             do {
-                let decoder = JSONDecoder()
-                if let contextKey = CodingUserInfoKey.context {
-                    decoder.userInfo[contextKey] = context
-                }
-                let decoded = try decoder.decode(type, from: data)
+                let decoded = try JSONDecoder().decode(type, from: data)
                 success(decoded)
             } catch let error {
                 failure(.decodeFailure(error))
@@ -52,12 +48,12 @@ class ClientAPI {
             }
 
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {
-                failure(.unauthorized(error))
+                failure(.unauthorized(self.customError("You're not authorized to access this resource")))
                 return
             }
 
             guard statusCode >= 200 && statusCode <= 299 else {
-                failure(.networkFailure(error))
+                failure(.networkFailure(self.customError("Request failed with status code of \(statusCode)")))
                 return
             }
 
@@ -67,5 +63,11 @@ class ClientAPI {
                 failure(.noResultsFound(error))
             }
         })
+    }
+
+    fileprivate func customError(_ description: String) -> Error {
+        let userInfo:[String: Any] = [NSLocalizedDescriptionKey: description]
+        let error = NSError(domain: "network", code: 0, userInfo: userInfo)
+        return error as Error
     }
 }

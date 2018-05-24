@@ -8,7 +8,7 @@
 
 import Foundation
 
-func performUIOnMainThread(_ completionHandler: @escaping () -> Void) {
+func performUIUpdatesOnMain(_ completionHandler: @escaping () -> Void) {
     DispatchQueue.main.async {
         completionHandler()
     }

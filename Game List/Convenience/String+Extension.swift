@@ -9,6 +9,9 @@
 import Foundation
 
 extension String {
+    func localized(bundle: Bundle = .main, name: String = "Localizable") -> String {
+        return NSLocalizedString(self, tableName: name, bundle: bundle, value: self, comment: "")
+    }
     subscript (characterOffset: Int) -> String {
         return String(self[self.index(startIndex, offsetBy: characterOffset)])
     }

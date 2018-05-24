@@ -9,10 +9,12 @@
 import CoreData
 
 class IGDBApi {
-    class func getGenres(with parameters: Parameters, on context: NSManagedObjectContext, success: @escaping ([Genre]?) -> Void, failure: @escaping (ClientError) -> Void) {
+    class func getGenres(with parameters: Parameters, success: @escaping ([Genre]?) -> Void, failure: @escaping (ClientError) -> Void) {
+        var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Genre.fields() as AnyObject)
         do {
             let request = try build(method: .genre(nil), with: parameters)
-            ClientAPI().get(request: request, for: [Genre].self, on: context, success: { genres in
+            ClientAPI().get(request: request, for: [Genre].self, success: { genres in
                 success(genres)
             }, failure: { error in
                 failure(error ?? .error(nil))
@@ -22,11 +24,34 @@ class IGDBApi {
         }
     }
 
-    class func getGames(with parameters: Parameters, on context: NSManagedObjectContext, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
+    class func getGames(for genre: Genre, with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
+        var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
+        if let id = genre.id {
+            parameters.addParameter(IGDBApi.ParameterKeys.FilterGenre, value: id as AnyObject)
+            do {
+                let request = try build(method: .game(nil), with: parameters)
+                ClientAPI().get(request: request, for: [Game].self, success: { games in
+                    success(games)
+                }, failure: { error in
+                    failure(error ?? .error(nil))
+                })
+            } catch let err {
+                failure(.error(err))
+            }
+        } else {
+            failure(.error(nil))
+        }
+
+    }
+
+    class func getGame(for id: Int, with parameters: Parameters, success: @escaping (Game?) -> Void, failure: @escaping (ClientError) -> Void) {
+        var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
         do {
-            let request = try build(method: .game(nil), with: parameters)
-            ClientAPI().get(request: request, for: [Game].self, on: context, success: { games in
-                success(games)
+            let request = try build(method: .game(id), with: parameters)
+            ClientAPI().get(request: request, for: [Game].self, success: { games in
+                success(games?.first)
             }, failure: { error in
                 failure(error ?? .error(nil))
             })
@@ -35,17 +60,24 @@ class IGDBApi {
         }
     }
 
-    class func getGame(for id: Int, with parameters: Parameters, on context: NSManagedObjectContext, success: @escaping (Game?) -> Void, failure: @escaping (ClientError) -> Void) {
-        do {
-            let request = try build(method: .game(id), with: parameters)
-            ClientAPI().get(request: request, for: [Game].self, on: context, success: { games in
-                success(games?.first)
-            }, failure: { error in
-                failure(error ?? .error(nil))
-            })
-        } catch let err {
-            failure(.error(err))
-        }
+    /// Download images from url's
+    ///
+    /// - Parameters:
+    ///   - url: url string of an image
+    ///   - completion: completion block to execute after the proccess is finished
+    class func downloadImage(from url: String, completion: @escaping (Data?, String?) -> Void) {
+        let imageURL = URL(string: url)
+        let request = URLRequest(url: imageURL!)
+        let task = ClientAPI().taskHandler(request: request, success: { data in
+            performUIUpdatesOnMain {
+                completion(data, nil)
+            }
+        }, failure: { error in
+            performUIUpdatesOnMain {
+                completion(nil, error?.localizedDescription)
+            }
+        })
+        task.resume()
     }
 }
 
@@ -83,6 +115,7 @@ extension IGDBApi {
 
     struct ParameterKeys {
         static let Fields = "fields"
+        static let FilterGenre = "filter[genres][eq]"
     }
 
     enum Method: CustomStringConvertible {

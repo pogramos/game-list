@@ -13,6 +13,11 @@ protocol GenreViewModelDelegate: class {
     /// Tells the delegate to update the viewController's UI
     func updateUI()
 
+    /// Tells the delegate to update the tableView section on
+    ///
+    /// - Parameter indexPaths: index of the reloading section
+    func updateUI(with indexSet: IndexSet)
+
     /// Tells the delegate to show a dialog for the current viewcontroller
     /// indicating that the operation failed, sending the message
     ///
@@ -20,17 +25,22 @@ protocol GenreViewModelDelegate: class {
     func showErrorOnUI(_ message: String)
 }
 
+public enum GenreOperation {
+    case add, delete
+}
+
 class GenreViewModel {
     let cellIdentifier = "GenreTableViewCell"
-
     weak var delegate: GenreViewModelDelegate!
 
-    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Genre> = makeFetchedResultsController()
+    var genres: [Genre]?
 
-    fileprivate func makeFetchedResultsController() -> NSFetchedResultsController<Genre> {
-        let fetchRequest: NSFetchRequest<Genre> = Genre.fetchRequest()
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<CoreDataGenre> = makeFetchedResultsController()
+
+    fileprivate func makeFetchedResultsController() -> NSFetchedResultsController<CoreDataGenre> {
+        let fetchRequest: NSFetchRequest<CoreDataGenre> = CoreDataGenre.fetchRequest()
         fetchRequest.sortDescriptors = []
-        let fetchedResultsController: NSFetchedResultsController<Genre> = NSFetchedResultsController(
+        let fetchedResultsController: NSFetchedResultsController<CoreDataGenre> = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: DataController.shared.viewContext,
             sectionNameKeyPath: "name",
@@ -40,32 +50,42 @@ class GenreViewModel {
         return fetchedResultsController
     }
 
-    fileprivate func save(genres: [Genre]?) {
+    fileprivate func downloadGenres() {
+        IGDBApi.getGenres(with: Parameters(), success: { genres in
+            self.genres = genres
+            self.save()
+            performUIUpdatesOnMain {
+                self.delegate.updateUI()
+            }
+        }, failure: { (error) in
+            performUIUpdatesOnMain {
+                self.delegate.showErrorOnUI(error.localizedDescription)
+            }
+        })
+    }
+
+    fileprivate func save() {
         if let genres = genres {
             for genre in genres {
-                DataController.shared.insert(object: genre)
+                _ = genre.toCoreData(on: DataController.shared.viewContext)
             }
             DataController.shared.save()
         }
+
+        try? fetchedResultsController.performFetch()
     }
 
     func numberOfSections() -> Int {
-        return fetchedResultsController.fetchedObjects?.count ?? 0
+        return genres?.count ?? 0
     }
 
     func numberOfItemsInSection(section: Int) -> Int {
-        return 0
+        return genres?[section].games?.count ?? 0
     }
 
+    // MARK: Genres
     func genreTitle(at section: Int) -> String {
-        if let sectionInfo = fetchedResultsController.sections?[section] {
-            return sectionInfo.name
-        }
-        return ""
-    }
-
-    func genre(at indexPath: IndexPath) -> Genre {
-        return fetchedResultsController.object(at: indexPath)
+        return genres?[section].name ?? ""
     }
 
     /// Fetch a collection of genres from the service
@@ -76,22 +96,36 @@ class GenreViewModel {
             fatalError("Unresolved error \(error)")
         }
 
-        if let genres = fetchedResultsController.fetchedObjects, genres.count > 0 {
+        if let objects = fetchedResultsController.fetchedObjects, objects.count > 0 {
+            genres = []
+            for object in objects {
+                genres?.append(object.toModel())
+            }
             self.delegate.updateUI()
         } else {
-            let parameters = Parameters([
-                IGDBApi.ParameterKeys.Fields: Genre.fields() as AnyObject
-                ])
-            IGDBApi.getGenres(with: parameters, on: DataController.shared.viewContext, success: { genres in
-                self.save(genres: genres)
-                performUIOnMainThread {
-                    self.delegate.updateUI()
-                }
-            }, failure: { (error) in
-                performUIOnMainThread {
-                    self.delegate.showErrorOnUI(error.localizedDescription)
-                }
-            })
+            downloadGenres()
         }
+    }
+
+    // MARK: Games
+    func game(at indexPath: IndexPath) -> Game? {
+        return genres?[indexPath.section].games?[indexPath.row]
+    }
+
+    func fetchGames(for section: Int) {
+        guard let genre = genres?[section] else {
+            return
+        }
+        IGDBApi.getGames(for: genre, with: Parameters(), success: { games in
+            self.genres?[section].games = games
+            performUIUpdatesOnMain {
+                let set = IndexSet(arrayLiteral: section)
+                self.delegate.updateUI(with: set)
+            }
+        }, failure: { (error) in
+            performUIUpdatesOnMain {
+                self.delegate.showErrorOnUI(error.localizedDescription)
+            }
+        })
     }
 }

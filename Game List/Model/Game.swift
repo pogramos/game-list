@@ -1,0 +1,20 @@
+//
+//  Game.swift
+//  Game List
+//
+//  Created by Guilherme Ramos on 18/05/2018.
+//  Copyright © 2018 Progeekt. All rights reserved.
+//
+
+import Foundation
+// sourcery: Codable, CoreDataEquivalency
+struct Game: Codable {
+    var id: Int64?
+    var name: String?
+    var summary: String?
+    var storyline: String?
+    // sourcery:begin: unconvertible
+    var cover: Image?
+    var screenshots: [Image]?
+    // sourcery:end
+}

@@ -18,12 +18,15 @@ class Loader {
         indicator.startAnimating()
     }
 
-    class func show(on viewController: UIViewController) {
-        blurredView.frame = viewController.view.bounds
+    class func show(on viewController: UIViewController?) {
+        if viewController != nil {
+            blurredView.frame = viewController!.view.bounds
 
-        setupActivityIndicator()
+            setupActivityIndicator()
 
-        viewController.view.addSubview(blurredView)
+            viewController!.view.addSubview(blurredView)
+        }
+
     }
 
     class func hide() {

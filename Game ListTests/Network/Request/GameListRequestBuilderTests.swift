@@ -37,7 +37,7 @@ class GameListRequestBuilderTests: QuickSpec {
         describe("A request") {
             var parameter: Parameters!
             beforeEach {
-                parameter = Parameters(["fields": "id,name" as AnyObject], headers: ["Accept": "application/json"])
+                parameter = Parameters(["fields": "id,name" as AnyObject,"filter[genre][eq]": 1 as AnyObject], headers: ["Accept": "application/json"])
             }
 
             describe("instance") {
@@ -47,6 +47,13 @@ class GameListRequestBuilderTests: QuickSpec {
                         let request = try? RequestBuilder.buildRequest(scheme: "http", host: "localhost", path: "path", parameters: parameter)
                         expect(request).notTo(beNil())
                         expect(request?.allHTTPHeaderFields?.count).to(equal(1))
+                    }
+                }
+
+                context("with parameter keypair") {
+                    it("should match the expected values") {
+                        let request = try? RequestBuilder.buildRequest(scheme: "https", host: "localhost", path: "genres/1", parameters: parameter)
+                        expect(request?.url?.absoluteString).to(equal("https://localhost/genres/1?fields=id,name&filter[genres][eq]=1"))
                     }
                 }
 

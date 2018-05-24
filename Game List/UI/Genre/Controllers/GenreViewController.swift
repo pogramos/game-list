@@ -26,23 +26,37 @@ class GenreViewController: UIViewController {
     }
 
     func registerCells() {
-        let cellNib = UINib(nibName: viewModel.cellIdentifier, bundle: .main)
-        tableView.register(cellNib, forCellReuseIdentifier: viewModel.cellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
         let name = String(describing: GenreSectionHeader.self)
         let headerNib = UINib(nibName: name, bundle: .main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: name)
     }
+
+    @objc func expandSection(sender: UIGestureRecognizer) {
+    }
 }
 
 extension GenreViewController: GenreViewModelDelegate {
-    func updateUI() {
-        tableView.reloadData()
+    func updateUI(with indexSet: IndexSet) {
         Loader.hide()
+        tableView.reloadSections(indexSet, with: .fade)
+    }
+
+    func updateUI() {
+        Loader.hide()
+        tableView.reloadData()
     }
 
     func showErrorOnUI(_ message: String) {
         Dialog.show(on: self, text: message)
+    }
+}
+
+extension GenreViewController: GenreSectionHeaderDelegate {
+    func didSelectSectionHeader(at index: NSInteger) {
+        Loader.show(on: self.tabBarController)
+        viewModel.fetchGames(for: index)
     }
 }
 
@@ -51,6 +65,8 @@ extension GenreViewController: UITableViewDelegate {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: GenreSectionHeader.self)) as? GenreSectionHeader else {
             return nil
         }
+        header.delegate = self
+        header.tag = section
         header.titleLabel.text = viewModel.genreTitle(at: section)
         return header
     }
@@ -70,11 +86,8 @@ extension GenreViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.cellIdentifier) as? GenreTableViewCell {
-            cell.viewModel = GenreTableViewCellViewModel(with: viewModel.genre(at: indexPath))
-            cell.configureCell()
-            return cell
-        }
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = viewModel.game(at: indexPath)?.name
+        return cell
     }
 }
