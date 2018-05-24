@@ -26,7 +26,7 @@ class GenreViewController: UIViewController {
     }
 
     func registerCells() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(GameTableViewCell.nib(), forCellReuseIdentifier: GameTableViewCell.name)
 
         let name = String(describing: GenreSectionHeader.self)
         let headerNib = UINib(nibName: name, bundle: .main)
@@ -49,14 +49,14 @@ extension GenreViewController: GenreViewModelDelegate {
     }
 
     func showErrorOnUI(_ message: String) {
-        Dialog.show(on: self, text: message)
+        Dialog.show(on: self, withTitle: "Error", text: message)
     }
 }
 
 extension GenreViewController: GenreSectionHeaderDelegate {
     func didSelectSectionHeader(at index: NSInteger) {
         Loader.show(on: self.tabBarController)
-        viewModel.fetchGames(for: index)
+        viewModel.toggle(section: index)
     }
 }
 
@@ -67,7 +67,7 @@ extension GenreViewController: UITableViewDelegate {
         }
         header.delegate = self
         header.tag = section
-        header.titleLabel.text = viewModel.genreTitle(at: section)
+        header.titleLabel.text = viewModel.genre(at: section)?.name
         return header
     }
 
@@ -86,8 +86,12 @@ extension GenreViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = viewModel.game(at: indexPath)?.name
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: GameTableViewCell.name, for: indexPath) as? GameTableViewCell {
+            if let game = viewModel.game(at: indexPath) {
+                cell.configCell(for: game)
+            }
+            return cell
+        }
+        return UITableViewCell()
     }
 }

@@ -53,7 +53,7 @@ class GameListRequestBuilderTests: QuickSpec {
                 context("with parameter keypair") {
                     it("should match the expected values") {
                         let request = try? RequestBuilder.buildRequest(scheme: "https", host: "localhost", path: "genres/1", parameters: parameter)
-                        expect(request?.url?.absoluteString).to(equal("https://localhost/genres/1?fields=id,name&filter[genres][eq]=1"))
+                        expect(request?.url?.absoluteString).to(equal("https://localhost/genres/1?fields=id,name&filter%5Bgenre%5D%5Beq%5D=1"))
                     }
                 }
 

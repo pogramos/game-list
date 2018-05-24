@@ -21,7 +21,6 @@ class GenreSectionHeader: UITableViewHeaderFooterView {
 
     weak var delegate: GenreSectionHeaderDelegate!
     var tapGesture: UITapGestureRecognizer!
-
     @IBOutlet weak var titleLabel: UILabel!
 
     override func awakeFromNib() {

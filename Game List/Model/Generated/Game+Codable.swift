@@ -11,12 +11,13 @@ extension Game {
       case name
       case summary
       case storyline
+      case first_release_date
       case cover
       case screenshots
   }
 
   static func fields() -> String {
-    let fields = "id,name,summary,storyline,cover,screenshots"
+    let fields = "id,name,summary,storyline,first_release_date,cover,screenshots"
     return fields
   }
   func toCoreData(on context: NSManagedObjectContext) -> CoreDataGame {
@@ -33,6 +34,9 @@ extension Game {
     if let storyline = storyline {
       equivalent.storyline = storyline
     }
+    if let first_release_date = first_release_date {
+      equivalent.first_release_date = first_release_date
+    }
     return equivalent
   }
 }
@@ -43,6 +47,7 @@ extension CoreDataGame {
     model.name = name
     model.summary = summary
     model.storyline = storyline
+    model.first_release_date = first_release_date
     return model
   }
 }
