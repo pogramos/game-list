@@ -13,6 +13,7 @@ struct Game: Codable {
     var name: String?
     var summary: String?
     var storyline: String?
+    var first_release_date: Int64?
     // sourcery:begin: unconvertible
     var cover: Image?
     var screenshots: [Image]?

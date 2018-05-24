@@ -23,5 +23,6 @@ extension CoreDataGame {
     @NSManaged public var summary: String?
     @NSManaged public var cover: Data?
     @NSManaged public var screenshots: Set<Data>?
+    @NSManaged public var first_release_date: Int64
 
 }

@@ -101,10 +101,10 @@ final class Dialog {
     // MARK: exposed methods
 
     class func show(on viewController: UIViewController) {
-        show(on: viewController, withTitle: "Alert", text: "jdiaosjdioasjdijaisdjajsdoijocxiodjkapsduaoiwheuiajdsdiosajd")
+        show(on: viewController, withTitle: "Alert", text: "error")
     }
 
-    class func show(on viewController: UIViewController, withTitle: String? = "Alert", text: String? = nil) {
+    class func show(on viewController: UIViewController, withTitle: String?, text: String?) {
         let dialog = buildDialog(with: viewController.view.bounds)
         let stack = createStackView(on: dialog)
 

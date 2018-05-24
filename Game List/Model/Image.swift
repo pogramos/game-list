@@ -10,4 +10,6 @@ import Foundation
 // sourcery: Codable
 struct Image: Codable {
     var url: String?
+    // sourcery: skip
+    var data: Data?
 }

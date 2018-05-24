@@ -80,12 +80,19 @@ class GenreViewModel {
     }
 
     func numberOfItemsInSection(section: Int) -> Int {
-        return genres?[section].games?.count ?? 0
+        if let expanded = genres?[section].expanded, expanded {
+            return genres?[section].games?.count ?? 0
+        }
+        return 0
     }
 
     // MARK: Genres
     func genreTitle(at section: Int) -> String {
         return genres?[section].name ?? ""
+    }
+
+    func genre(at section: Int) -> Genre? {
+        return genres?[section]
     }
 
     /// Fetch a collection of genres from the service
@@ -110,6 +117,21 @@ class GenreViewModel {
     // MARK: Games
     func game(at indexPath: IndexPath) -> Game? {
         return genres?[indexPath.section].games?[indexPath.row]
+    }
+
+    /// Toggles the table view for a given section,
+    /// If there's no value to the **expanded** property it means that
+    /// the section wasn't expanded yet, so it means that it must be set to **true**
+    ///
+    /// - Parameter section: given section from an indexpath
+    func toggle(section: Int) {
+        if let expanded = genres?[section].expanded {
+            genres?[section].expanded = !expanded
+        } else {
+            genres?[section].expanded = true
+        }
+
+        fetchGames(for: section)
     }
 
     func fetchGames(for section: Int) {

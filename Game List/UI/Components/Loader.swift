@@ -9,11 +9,11 @@
 import UIKit
 
 class Loader {
-    static let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+    static let blurredView = UIView()
     static let indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     fileprivate static func setupActivityIndicator() {
-        blurredView.contentView.addSubview(indicator)
+        blurredView.addSubview(indicator)
         indicator.center = blurredView.center
         indicator.startAnimating()
     }
@@ -21,6 +21,7 @@ class Loader {
     class func show(on viewController: UIViewController?) {
         if viewController != nil {
             blurredView.frame = viewController!.view.bounds
+            blurredView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
 
             setupActivityIndicator()
 

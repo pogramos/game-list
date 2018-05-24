@@ -66,8 +66,9 @@ class IGDBApi {
     ///   - url: url string of an image
     ///   - completion: completion block to execute after the proccess is finished
     class func downloadImage(from url: String, completion: @escaping (Data?, String?) -> Void) {
-        let imageURL = URL(string: url)
-        let request = URLRequest(url: imageURL!)
+        var urlComponent = URLComponents(string: url)!
+        urlComponent.scheme = Constants.APIScheme
+        let request = URLRequest(url: urlComponent.url!)
         let task = ClientAPI().taskHandler(request: request, success: { data in
             performUIUpdatesOnMain {
                 completion(data, nil)
