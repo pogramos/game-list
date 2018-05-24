@@ -22,10 +22,7 @@ class GameListClientTests: QuickSpec {
                 context("for genres") {
                     it("should return a list of genres") {
                         waitUntil(timeout: 10) { done in
-                            let parameters = Parameters([
-                                "fields": Genre.fields() as AnyObject
-                                ])
-                            IGDBApi.getGenres(with: parameters, on: viewContext, success: { (genres) in
+                            IGDBApi.getGenres(with: Parameters(), success: { (genres) in
                                 expect(genres).toNot(beNil())
                                 done()
                             }, failure: { (error) in
@@ -39,10 +36,7 @@ class GameListClientTests: QuickSpec {
                 context("for game with id 12") {
                     it("should return a game") {
                         waitUntil(timeout: 10) { done in
-                            let parameters = Parameters([
-                                "fields": Game.fields() as AnyObject
-                                ])
-                            IGDBApi.getGame(for: 12, with: parameters, on: viewContext, success:  { games in
+                            IGDBApi.getGame(for: 12, with: Parameters(), success:  { games in
                                 expect(games).toNot(beNil())
                                 done()
                             }, failure: { (error) in
@@ -56,10 +50,9 @@ class GameListClientTests: QuickSpec {
                 context("for games from the genre with id 9") {
                     it("should return a list of games") {
                         waitUntil(timeout: 10) { done in
-                            let parameters = Parameters([
-                                "fields": Game.fields() as AnyObject
-                                ])
-                            IGDBApi.getGames(with: parameters, on: viewContext, success:  { games in
+                            var genre = Genre()
+                            genre.id = 9
+                            IGDBApi.getGames(for: genre, with: Parameters(), success:  { games in
                                 expect(games).toNot(beNil())
                                 done()
                             }, failure: { (error) in

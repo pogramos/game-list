@@ -14,7 +14,7 @@ protocol GenreTableViewCellViewModelProtocol {
 
 class GenreTableViewCellViewModel {
     fileprivate var genre: Genre!
-    fileprivate var games: [Game]?
+    var games: [Game]?
 
     var folded: Bool = true
 
