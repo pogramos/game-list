@@ -14,7 +14,7 @@ extension {{ type.name }} {
   }
 
   static func fields() -> String {
-    let fields = "{% for variable in type.variables %}{% if variable|!annotated:"skip" %}{{ variable.name }}{% if not forloop.last %},{% endif %}{% endif %}{% endfor %}"
+    let fields = "{% for variable in type.variables|!annotated:"skip" %}{{ variable.name }}{% if not forloop.last %},{% endif %}{% endfor %}"
     return fields
   }
   {% if type|annotated:"CoreDataEquivalency" %}

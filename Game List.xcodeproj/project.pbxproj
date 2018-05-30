@@ -20,9 +20,11 @@
 		5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4CB20A912A20012AA9B /* TabBarViewController.swift */; };
 		5593D4CE20A91D760012AA9B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4CD20A91D760012AA9B /* Loader.swift */; };
 		5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4D720A92C6D0012AA9B /* GameTableViewCell.swift */; };
-		5593D4DA20A92C6E0012AA9B /* GameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5593D4D820A92C6D0012AA9B /* GameTableViewCell.xib */; };
-		55D36C1B20AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1720AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift */; };
-		55D36C1C20AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1820AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift */; };
+		55B962F620BE540500EDA789 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B962F520BE540500EDA789 /* GameViewModel.swift */; };
+		55B962F920BE62BF00EDA789 /* CoreDataGame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B962F720BE62BF00EDA789 /* CoreDataGame+CoreDataClass.swift */; };
+		55B962FA20BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B962F820BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift */; };
+		55BC172B20BB940800069060 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BC172A20BB940700069060 /* GameViewController.swift */; };
+		55BC172D20BBA0E000069060 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BC172C20BBA0DF00069060 /* UIViewController+Extension.swift */; };
 		55D36C1D20AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */; };
 		55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */; };
 		55D36C2220AFEC9100934E76 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1F20AFEC9000934E76 /* Game.swift */; };
@@ -104,9 +106,11 @@
 		5593D4CB20A912A20012AA9B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5593D4CD20A91D760012AA9B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		5593D4D720A92C6D0012AA9B /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
-		5593D4D820A92C6D0012AA9B /* GameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTableViewCell.xib; sourceTree = "<group>"; };
-		55D36C1720AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGame+CoreDataClass.swift"; sourceTree = "<group>"; };
-		55D36C1820AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGame+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		55B962F520BE540500EDA789 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		55B962F720BE62BF00EDA789 /* CoreDataGame+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataGame+CoreDataClass.swift"; sourceTree = "<group>"; };
+		55B962F820BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataGame+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		55BC172A20BB940700069060 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		55BC172C20BBA0DF00069060 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataClass.swift"; sourceTree = "<group>"; };
 		55D36C1F20AFEC9000934E76 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -252,6 +256,22 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		55E2469420BB9291003180D7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				55BC172A20BB940700069060 /* GameViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		55E2469520BB92A4003180D7 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				55B962F520BE540500EDA789 /* GameViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		E652CE73209E5D08000B2619 /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +369,7 @@
 			children = (
 				551EF60220A6B2A3007C92D4 /* String+Extension.swift */,
 				5586343420A8E77400389C3A /* GCDBlackBox.swift */,
+				55BC172C20BBA0DF00069060 /* UIViewController+Extension.swift */,
 			);
 			path = Convenience;
 			sourceTree = "<group>";
@@ -367,8 +388,8 @@
 				55D36C1F20AFEC9000934E76 /* Game.swift */,
 				55D36C2020AFEC9000934E76 /* Genre.swift */,
 				55D36C2120AFEC9100934E76 /* Image.swift */,
-				55D36C1720AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift */,
-				55D36C1820AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift */,
+				55B962F720BE62BF00EDA789 /* CoreDataGame+CoreDataClass.swift */,
+				55B962F820BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift */,
 				55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */,
 				55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */,
 				5573923120AE886000267C9F /* Generated */,
@@ -401,6 +422,8 @@
 		E6DD60B0209EDB67004B4085 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				55E2469520BB92A4003180D7 /* View Models */,
+				55E2469420BB9291003180D7 /* Controllers */,
 				E6DD60B8209EE1EC004B4085 /* Game.storyboard */,
 			);
 			path = Game;
@@ -412,7 +435,6 @@
 				E6DD60C1209EE4F2004B4085 /* View Model */,
 				E6DD60C0209EE4EA004B4085 /* Controllers */,
 				E6DD60BA209EE209004B4085 /* Genre.storyboard */,
-				5593D4D820A92C6D0012AA9B /* GameTableViewCell.xib */,
 				5573921120AC021C00267C9F /* GenreSectionHeader.xib */,
 			);
 			path = Genre;
@@ -578,7 +600,6 @@
 				5573921220AC021C00267C9F /* GenreSectionHeader.xib in Resources */,
 				E66851AE209D5C62002C0CF9 /* LaunchScreen.storyboard in Resources */,
 				E6DD60B9209EE1EC004B4085 /* Game.storyboard in Resources */,
-				5593D4DA20A92C6E0012AA9B /* GameTableViewCell.xib in Resources */,
 				55D36C2C20B288B000934E76 /* Localizable.strings in Resources */,
 				E6DD60BF209EE2EE004B4085 /* Favorite.storyboard in Resources */,
 				E66851AB209D5C62002C0CF9 /* Assets.xcassets in Resources */,
@@ -658,22 +679,25 @@
 				E66851E7209D6DDD002C0CF9 /* IGDBApi.swift in Sources */,
 				55D36C2420AFEC9100934E76 /* Image.swift in Sources */,
 				5573921420AC025D00267C9F /* GenreSectionHeader.swift in Sources */,
+				55BC172D20BBA0E000069060 /* UIViewController+Extension.swift in Sources */,
 				E6DD60CB209EE57F004B4085 /* GenreTableViewCellViewModel.swift in Sources */,
 				55D36C2920AFECB000934E76 /* Game+Codable.swift in Sources */,
 				E66851DE209D6D38002C0CF9 /* ClientError.swift in Sources */,
 				55D36C2820AFECB000934E76 /* Image+Codable.swift in Sources */,
 				55D36C2A20AFECB000934E76 /* Genre+Codable.swift in Sources */,
+				55B962F920BE62BF00EDA789 /* CoreDataGame+CoreDataClass.swift in Sources */,
 				5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */,
 				E66851A9209D5C60002C0CF9 /* Game_List.xcdatamodeld in Sources */,
 				5586343820A8E8BA00389C3A /* Dialog.swift in Sources */,
+				55B962F620BE540500EDA789 /* GameViewModel.swift in Sources */,
 				5533F2FD20ABE8B80093D82B /* CardView.swift in Sources */,
 				55D36C2320AFEC9100934E76 /* Genre.swift in Sources */,
 				E6DD60C3209EE505004B4085 /* GenreViewController.swift in Sources */,
 				E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */,
+				55B962FA20BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift in Sources */,
 				E66851A1209D5C60002C0CF9 /* AppDelegate.swift in Sources */,
 				55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */,
 				5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */,
-				55D36C1B20AFEC8300934E76 /* CoreDataGame+CoreDataClass.swift in Sources */,
 				E66851DC209D6D0D002C0CF9 /* ClientAPI.swift in Sources */,
 				55D36C2220AFEC9100934E76 /* Game.swift in Sources */,
 				5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */,
@@ -682,9 +706,9 @@
 				5541CD3920A9393A00B981F4 /* DataController.swift in Sources */,
 				E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */,
 				E6DD60C5209EE513004B4085 /* GenreViewModel.swift in Sources */,
-				55D36C1C20AFEC8300934E76 /* CoreDataGame+CoreDataProperties.swift in Sources */,
 				55D36C1D20AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift in Sources */,
 				5593D4CE20A91D760012AA9B /* Loader.swift in Sources */,
+				55BC172B20BB940800069060 /* GameViewController.swift in Sources */,
 				5533F2FF20ABE8E10093D82B /* CardUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ extension Image {
   }
 
   static func fields() -> String {
-    let fields = "url,"
+    let fields = "url"
     return fields
   }
 }

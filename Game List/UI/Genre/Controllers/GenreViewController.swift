@@ -26,14 +26,19 @@ class GenreViewController: UIViewController {
     }
 
     func registerCells() {
-        tableView.register(GameTableViewCell.nib(), forCellReuseIdentifier: GameTableViewCell.name)
+//        tableView.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell.name)
 
         let name = String(describing: GenreSectionHeader.self)
         let headerNib = UINib(nibName: name, bundle: .main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: name)
     }
 
-    @objc func expandSection(sender: UIGestureRecognizer) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? GameViewController, let cell = sender as? GameTableViewCell {
+            if let indexPath = tableView.indexPath(for: cell), let game = viewModel.game(at: indexPath) {
+                controller.viewModel = GameViewModel(with: game)
+            }
+        }
     }
 }
 
@@ -86,7 +91,7 @@ extension GenreViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: GameTableViewCell.name, for: indexPath) as? GameTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: GameTableViewCell.name) as? GameTableViewCell {
             if let game = viewModel.game(at: indexPath) {
                 cell.configCell(for: game)
             }
