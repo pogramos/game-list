@@ -24,6 +24,7 @@ final class DataController {
 
     fileprivate init() {
         persistentContainer = NSPersistentContainer(name: modelName)
+        viewContext.retainsRegisteredObjects = true
     }
 
     fileprivate func autoSaveContext(interval: TimeInterval = 30) {

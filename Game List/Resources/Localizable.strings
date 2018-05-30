@@ -5,7 +5,7 @@
   Created by Guilherme Ramos on 21/05/2018.
   Copyright © 2018 Progeekt. All rights reserved.
 */
-
+// MARK: Error
 "unauthorized" = "You're not authorized to access this resource";
 "error" = "There was an error while processing your request";
 "encode_failure" = "Failed to encode object";
@@ -13,3 +13,6 @@
 "not_found" = "No data was returned by the request";
 "wrong_path" = "Your path should either be empty or start with a single slash '/'";
 "unavailable_connection" = "There's no internet available to complete your request";
+
+// MARK: strings
+"unavailable_summary" = "No summary available";

@@ -87,8 +87,8 @@ extension IGDBApi {
 
         var parameters = parameters
         parameters.headers = [
-            HeaderKey.UserKey: HeaderValues.UserKey,
-            HeaderKey.Accept: HeaderValues.ApplicationJSON
+            HeaderKey.UserKey: HeaderValues.UserKey
+//            HeaderKey.ContentType: HeaderValues.ApplicationJSON
         ]
 
         return try RequestBuilder.buildRequest(scheme: Constants.APIScheme,
@@ -111,7 +111,7 @@ extension IGDBApi {
 
     fileprivate struct HeaderKey {
         static let UserKey = "user-key"
-        static let Accept = "Accept"
+        static let ContentType = "Content-Type"
     }
 
     struct ParameterKeys {

@@ -66,7 +66,7 @@ class ClientAPI {
     }
 
     fileprivate func customError(_ description: String) -> Error {
-        let userInfo:[String: Any] = [NSLocalizedDescriptionKey: description]
+        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: description]
         let error = NSError(domain: "network", code: 0, userInfo: userInfo)
         return error as Error
     }

@@ -9,11 +9,4 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        if selectedIndex == 1, let navController = selectedViewController as? UINavigationController {
-
-        }
-    }
 }

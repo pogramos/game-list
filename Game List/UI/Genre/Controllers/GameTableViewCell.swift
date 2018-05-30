@@ -8,8 +8,15 @@
 
 import UIKit
 
-class GameTableViewCell: UITableViewCell {
+fileprivate enum Code: String, CustomStringConvertible {
+    case unavailable_summary
 
+    var description: String {
+        return self.rawValue.localized()
+    }
+}
+
+class GameTableViewCell: UITableViewCell {
     var imageData: Data?
     static var name: String {
         return String(describing: GameTableViewCell.self)
@@ -23,19 +30,10 @@ class GameTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    class func nib() -> UINib {
-        return UINib(nibName: name, bundle: .main)
-    }
-
     func configCell(for game: Game) {
         titleLabel.text = game.name
         releaseLabel.text = "Release date: \(date(with: game.first_release_date))"
-
-        if let summary = game.summary {
-            summaryLabel.text = summary
-        } else {
-            summaryWrapperView.isHidden = true
-        }
+        summaryLabel.text = game.summary ?? Code.unavailable_summary.description
     }
 
     func date(with number: Int64?) -> String {

@@ -15,10 +15,6 @@ class GameListClientTests: QuickSpec {
     override func spec() {
         describe("IGDB service") {
             describe("GET method") {
-                var viewContext: NSManagedObjectContext!
-                beforeEach {
-                    viewContext = setupMemoryViewContext()
-                }
                 context("for genres") {
                     it("should return a list of genres") {
                         waitUntil(timeout: 10) { done in

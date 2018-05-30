@@ -52,6 +52,5 @@ extension Parameters: CustomStringConvertible {
             }
             return ""
             }.joined()
-        return ""
     }
 }
