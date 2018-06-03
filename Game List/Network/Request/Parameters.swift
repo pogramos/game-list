@@ -12,6 +12,11 @@ struct Parameters {
     var query: [URLQueryItem] = [URLQueryItem]()
     var headers: [String: String]?
 
+    enum Order: String {
+        case desc
+        case asc
+    }
+
     init(_ parameters: [String: AnyObject] = [:], headers: [String: String] = [:]) {
         self.query = builQuery(with: parameters)
         self.headers = headers
@@ -39,9 +44,16 @@ struct Parameters {
         query.append(URLQueryItem(name: name, value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)))
     }
 
+    mutating func sort(_ name: String, order: Order) {
+        if let orderName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            query.append(URLQueryItem(name: "order", value: "\(orderName):\(order)"))
+        }
+    }
+
     mutating func addFilter(_ name: String, value: AnyObject) {
         query.append(URLQueryItem(name: "filter\(name)", value: "\(value)"))
     }
+
 }
 
 extension Parameters: CustomStringConvertible {

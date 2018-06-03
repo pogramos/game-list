@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension CoreDataGame {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CoreDataGame> {
@@ -25,5 +24,5 @@ extension CoreDataGame {
     @NSManaged public var screenshots: Set<Data>?
     @NSManaged public var storyline: String?
     @NSManaged public var summary: String?
-
+    @NSManaged public var favorite: Bool
 }

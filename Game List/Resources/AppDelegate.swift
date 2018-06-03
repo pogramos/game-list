@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import CoreData
-// swiftlint:disable line_length
+import Hero
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
