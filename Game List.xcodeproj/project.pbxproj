@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551CE3C920C249C80031EF84 /* ReusableGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE3C720C249C80031EF84 /* ReusableGameTableViewCell.swift */; };
+		551CE3CA20C249C80031EF84 /* ReusableGameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551CE3C820C249C80031EF84 /* ReusableGameTableViewCell.xib */; };
+		551CE3CD20C249EA0031EF84 /* ReusableGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE3CC20C249EA0031EF84 /* ReusableGameModel.swift */; };
+		551CE3CF20C25C430031EF84 /* GameModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE3CE20C25C430031EF84 /* GameModelProtocol.swift */; };
+		551CE3D120C265080031EF84 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE3D020C265080031EF84 /* RecentsViewController.swift */; };
+		551CE3D320C265250031EF84 /* RecentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE3D220C265250031EF84 /* RecentsViewModel.swift */; };
+		551CE3D520C265DA0031EF84 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE3D420C265DA0031EF84 /* UITableViewCell+Extension.swift */; };
 		5533F2FD20ABE8B80093D82B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5533F2FC20ABE8B80093D82B /* CardView.swift */; };
 		5533F2FF20ABE8E10093D82B /* CardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5533F2FE20ABE8E10093D82B /* CardUIView.swift */; };
 		5541CD3920A9393A00B981F4 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5541CD3820A9393A00B981F4 /* DataController.swift */; };
@@ -15,9 +22,9 @@
 		5541CD4220A9442A00B981F4 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551EF60220A6B2A3007C92D4 /* String+Extension.swift */; };
 		5573921220AC021C00267C9F /* GenreSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5573921120AC021C00267C9F /* GenreSectionHeader.xib */; };
 		5573921420AC025D00267C9F /* GenreSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5573921320AC025D00267C9F /* GenreSectionHeader.swift */; };
+		5577415420C0DF95001E08F1 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5577415320C0DF95001E08F1 /* Chameleon.framework */; };
 		5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586343420A8E77400389C3A /* GCDBlackBox.swift */; };
 		5586343820A8E8BA00389C3A /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5586343720A8E8BA00389C3A /* Dialog.swift */; };
-		5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4CB20A912A20012AA9B /* TabBarViewController.swift */; };
 		5593D4CE20A91D760012AA9B /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4CD20A91D760012AA9B /* Loader.swift */; };
 		5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593D4D720A92C6D0012AA9B /* GameTableViewCell.swift */; };
 		55B962F620BE540500EDA789 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B962F520BE540500EDA789 /* GameViewModel.swift */; };
@@ -93,6 +100,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		551CE3C720C249C80031EF84 /* ReusableGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGameTableViewCell.swift; sourceTree = "<group>"; };
+		551CE3C820C249C80031EF84 /* ReusableGameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableGameTableViewCell.xib; sourceTree = "<group>"; };
+		551CE3CC20C249EA0031EF84 /* ReusableGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGameModel.swift; sourceTree = "<group>"; };
+		551CE3CE20C25C430031EF84 /* GameModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModelProtocol.swift; sourceTree = "<group>"; };
+		551CE3D020C265080031EF84 /* RecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
+		551CE3D220C265250031EF84 /* RecentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsViewModel.swift; sourceTree = "<group>"; };
+		551CE3D420C265DA0031EF84 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		551EF60220A6B2A3007C92D4 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5533F2FC20ABE8B80093D82B /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		5533F2FE20ABE8E10093D82B /* CardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUIView.swift; sourceTree = "<group>"; };
@@ -101,9 +115,9 @@
 		5541CD4020A93CBB00B981F4 /* MemorySetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorySetup.swift; sourceTree = "<group>"; };
 		5573921120AC021C00267C9F /* GenreSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreSectionHeader.xib; sourceTree = "<group>"; };
 		5573921320AC025D00267C9F /* GenreSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreSectionHeader.swift; sourceTree = "<group>"; };
+		5577415320C0DF95001E08F1 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
 		5586343420A8E77400389C3A /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		5586343720A8E8BA00389C3A /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
-		5593D4CB20A912A20012AA9B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5593D4CD20A91D760012AA9B /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		5593D4D720A92C6D0012AA9B /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 		55B962F520BE540500EDA789 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
@@ -164,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5577415420C0DF95001E08F1 /* Chameleon.framework in Frameworks */,
 				E66851D7209D6A9B002C0CF9 /* Hero.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +202,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		551CE3C620C249780031EF84 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				551CE3CB20C249D60031EF84 /* View Model */,
+				551CE3C720C249C80031EF84 /* ReusableGameTableViewCell.swift */,
+				551CE3C820C249C80031EF84 /* ReusableGameTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		551CE3CB20C249D60031EF84 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				551CE3CC20C249EA0031EF84 /* ReusableGameModel.swift */,
+				551CE3CE20C25C430031EF84 /* GameModelProtocol.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		5541CD3A20A93C1400B981F4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +267,7 @@
 		5586343620A8E8AA00389C3A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				551CE3C620C249780031EF84 /* Cells */,
 				5533F2FE20ABE8E10093D82B /* CardUIView.swift */,
 				5586343720A8E8BA00389C3A /* Dialog.swift */,
 				5593D4CD20A91D760012AA9B /* Loader.swift */,
@@ -260,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				55BC172A20BB940700069060 /* GameViewController.swift */,
+				551CE3D020C265080031EF84 /* RecentsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				55B962F520BE540500EDA789 /* GameViewModel.swift */,
+				551CE3D220C265250031EF84 /* RecentsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -337,6 +374,7 @@
 		E66851D5209D6A9B002C0CF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5577415320C0DF95001E08F1 /* Chameleon.framework */,
 				E652CE7A209E62F6000B2619 /* Nimble.framework */,
 				E652CE7B209E62F6000B2619 /* Quick.framework */,
 				E66851D6209D6A9B002C0CF9 /* Hero.framework */,
@@ -370,6 +408,7 @@
 				551EF60220A6B2A3007C92D4 /* String+Extension.swift */,
 				5586343420A8E77400389C3A /* GCDBlackBox.swift */,
 				55BC172C20BBA0DF00069060 /* UIViewController+Extension.swift */,
+				551CE3D420C265DA0031EF84 /* UITableViewCell+Extension.swift */,
 			);
 			path = Convenience;
 			sourceTree = "<group>";
@@ -444,7 +483,6 @@
 			isa = PBXGroup;
 			children = (
 				E66851A4209D5C60002C0CF9 /* Main.storyboard */,
-				5593D4CB20A912A20012AA9B /* TabBarViewController.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -605,6 +643,7 @@
 				E66851AB209D5C62002C0CF9 /* Assets.xcassets in Resources */,
 				E66851A6209D5C60002C0CF9 /* Main.storyboard in Resources */,
 				E6DD60BB209EE209004B4085 /* Genre.storyboard in Resources */,
+				551CE3CA20C249C80031EF84 /* ReusableGameTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +671,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Hero.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Chameleon.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
@@ -681,31 +721,36 @@
 				5573921420AC025D00267C9F /* GenreSectionHeader.swift in Sources */,
 				55BC172D20BBA0E000069060 /* UIViewController+Extension.swift in Sources */,
 				E6DD60CB209EE57F004B4085 /* GenreTableViewCellViewModel.swift in Sources */,
+				551CE3D120C265080031EF84 /* RecentsViewController.swift in Sources */,
 				55D36C2920AFECB000934E76 /* Game+Codable.swift in Sources */,
 				E66851DE209D6D38002C0CF9 /* ClientError.swift in Sources */,
 				55D36C2820AFECB000934E76 /* Image+Codable.swift in Sources */,
 				55D36C2A20AFECB000934E76 /* Genre+Codable.swift in Sources */,
 				55B962F920BE62BF00EDA789 /* CoreDataGame+CoreDataClass.swift in Sources */,
-				5593D4CC20A912A20012AA9B /* TabBarViewController.swift in Sources */,
 				E66851A9209D5C60002C0CF9 /* Game_List.xcdatamodeld in Sources */,
 				5586343820A8E8BA00389C3A /* Dialog.swift in Sources */,
 				55B962F620BE540500EDA789 /* GameViewModel.swift in Sources */,
 				5533F2FD20ABE8B80093D82B /* CardView.swift in Sources */,
 				55D36C2320AFEC9100934E76 /* Genre.swift in Sources */,
 				E6DD60C3209EE505004B4085 /* GenreViewController.swift in Sources */,
+				551CE3C920C249C80031EF84 /* ReusableGameTableViewCell.swift in Sources */,
 				E652CE75209E5D15000B2619 /* RequestBuilder.swift in Sources */,
 				55B962FA20BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift in Sources */,
 				E66851A1209D5C60002C0CF9 /* AppDelegate.swift in Sources */,
 				55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */,
+				551CE3CF20C25C430031EF84 /* GameModelProtocol.swift in Sources */,
+				551CE3D320C265250031EF84 /* RecentsViewModel.swift in Sources */,
 				5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */,
 				E66851DC209D6D0D002C0CF9 /* ClientAPI.swift in Sources */,
 				55D36C2220AFEC9100934E76 /* Game.swift in Sources */,
 				5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */,
 				E6DD60A0209EBBCB004B4085 /* AutoNSManagedCodableObject.swift in Sources */,
+				551CE3CD20C249EA0031EF84 /* ReusableGameModel.swift in Sources */,
 				E66851E4209D6DA6002C0CF9 /* ClientProtocol.swift in Sources */,
 				5541CD3920A9393A00B981F4 /* DataController.swift in Sources */,
 				E652CE79209E5DA7000B2619 /* Parameters.swift in Sources */,
 				E6DD60C5209EE513004B4085 /* GenreViewModel.swift in Sources */,
+				551CE3D520C265DA0031EF84 /* UITableViewCell+Extension.swift in Sources */,
 				55D36C1D20AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift in Sources */,
 				5593D4CE20A91D760012AA9B /* Loader.swift in Sources */,
 				55BC172B20BB940800069060 /* GameViewController.swift in Sources */,

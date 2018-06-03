@@ -7,14 +7,13 @@
 //
 
 import UIKit
+import Hero
 
 class GenreViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    lazy var viewModel: GenreViewModel = {
-        return GenreViewModel()
-    }()
+    let viewModel = GenreViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +25,6 @@ class GenreViewController: UIViewController {
     }
 
     func registerCells() {
-//        tableView.register(GameTableViewCell.self, forCellReuseIdentifier: GameTableViewCell.name)
-
         let name = String(describing: GenreSectionHeader.self)
         let headerNib = UINib(nibName: name, bundle: .main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: name)
@@ -36,7 +33,7 @@ class GenreViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? GameViewController, let cell = sender as? GameTableViewCell {
             if let indexPath = tableView.indexPath(for: cell), let game = viewModel.game(at: indexPath) {
-                controller.viewModel = GameViewModel(with: game)
+                controller.viewModel = GameViewModel(game: game)
             }
         }
     }

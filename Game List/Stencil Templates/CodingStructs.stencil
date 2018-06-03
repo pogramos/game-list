@@ -1,6 +1,5 @@
 {% for type in types.structs|annotated:"Codable" %}
 // sourcery:file:Generated/{{ type.name }}+Codable.swift
-
 import Foundation
 {% if type|annotated:"CoreDataEquivalency" %}import CoreData{% endif %}
 

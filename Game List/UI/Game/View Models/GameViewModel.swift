@@ -9,49 +9,38 @@
 import Foundation
 import CoreData
 
-class GameViewModel {
-    let game: Game!
+final class GameViewModel {
+    private var game: Game?
     private var coreDataGame: CoreDataGame?
 
     var title: String? {
-        return game.name
+        return coreDataGame?.name
     }
 
     var release: String? {
-        return "\(date(with: game.first_release_date))"
+        return "\(date(with: coreDataGame?.first_release_date))"
     }
 
     var summary: String? {
-        return game.summary ?? "No summary available"
+        return coreDataGame?.summary ?? "No summary available"
     }
 
-    init(with game: Game) {
+    var favorite: Bool {
+        return coreDataGame?.favorite ?? false
+    }
+
+    internal init() {}
+
+    init(game: Game) {
         self.game = game
         saveToCoreData()
     }
 
-    func fetchImage(_ completion: @escaping (Data?) -> Void) {
-        if let data = coreDataGame?.cover {
-            completion(data)
-        } else {
-            if let url = game.cover?.url {
-                IGDBApi.downloadImage(from: url) { (imageData, error) in
-                    if let error = error {
-                        print(error)
-                    }
-                    self.coreDataGame?.cover = imageData
-                    DataController.shared.save()
-                    performUIUpdatesOnMain {
-                        completion(imageData)
-                    }
-                }
-            } else {
-                completion(nil)
-            }
-        }
+    init(core: CoreDataGame) {
+        coreDataGame = core
     }
 
-    func date(with number: Int64?) -> String {
+    private func date(with number: Int64?) -> String {
         if let number = number, let interval = TimeInterval(exactly: number / 1000) {
             let date = Date(timeIntervalSince1970: interval)
             let formatter = DateFormatter()
@@ -64,13 +53,13 @@ class GameViewModel {
     // MARK: coredata
 
     private func saveToCoreData() {
-        guard let id = game.id else {
+        guard let id = game?.id else {
             return
         }
         if let cdGame = checkGame(with: id) {
             coreDataGame = cdGame
         } else {
-            coreDataGame = game.toCoreData(on: DataController.shared.viewContext)
+            coreDataGame = game?.toCoreData(on: DataController.shared.viewContext)
         }
     }
 
@@ -89,5 +78,33 @@ class GameViewModel {
         } catch {
             return nil
         }
+    }
+}
+
+extension GameViewModel: GameViewModelProtocol {
+    func fetchImage(_ completion: @escaping (Data?) -> Void) {
+        if let data = coreDataGame?.cover {
+            completion(data)
+        } else {
+            if let url = game?.cover?.url {
+                IGDBApi.downloadImage(from: url) { (imageData, error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    self.coreDataGame?.cover = imageData
+                    DataController.shared.save()
+                    performUIUpdatesOnMain {
+                        completion(imageData)
+                    }
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
+    func toggleFavorite() {
+        coreDataGame?.favorite = !favorite
+        DataController.shared.save()
     }
 }

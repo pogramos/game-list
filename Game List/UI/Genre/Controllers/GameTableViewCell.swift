@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate enum Code: String, CustomStringConvertible {
+private enum Code: String, CustomStringConvertible {
     case unavailable_summary
 
     var description: String {
@@ -18,9 +18,6 @@ fileprivate enum Code: String, CustomStringConvertible {
 
 class GameTableViewCell: UITableViewCell {
     var imageData: Data?
-    static var name: String {
-        return String(describing: GameTableViewCell.self)
-    }
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
@@ -32,7 +29,12 @@ class GameTableViewCell: UITableViewCell {
 
     func configCell(for game: Game) {
         titleLabel.text = game.name
-        releaseLabel.text = "Release date: \(date(with: game.first_release_date))"
+        let dateValue = date(with: game.first_release_date)
+        if !dateValue.isEmpty {
+            releaseLabel.text = "Release date: \(dateValue)"
+        } else {
+            releaseLabel.isHidden = true
+        }
         summaryLabel.text = game.summary ?? Code.unavailable_summary.description
     }
 
