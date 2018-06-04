@@ -12,33 +12,35 @@ import Chameleon
 class ReusableGameTableViewCell: UITableViewCell {
     var viewModel: ReusableGameModel?
 
+    @IBOutlet weak var titleBarView: UIView!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteButton: HeartButton!
     @IBOutlet weak var summaryLabel: UILabel!
 
-    func config() {
-        let defaultColor = contentView.backgroundColor ?? .white
-        var contrastingColor = ContrastColorOf(defaultColor, returnFlat: true)
-        if let data = viewModel?.image, let image = UIImage(data: data) {
-            contrastingColor = ContrastColorOf(AverageColorFromImage(image), returnFlat: true)
-            bgImageView.image = UIImage(data: data)
-        } else {
-            bgImageView.alpha = 0
-        }
-
-        titleLabel.text = viewModel?.title
-        titleLabel.textColor = contrastingColor
-        summaryLabel.text = viewModel?.summary
-        summaryLabel.textColor = contrastingColor
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        favoriteColor(for: favoriteButton)
     }
 
-    fileprivate func setFavoriteImage(for button: UIButton) {
-        if let fav = viewModel?.favorite {
-            let img: UIImage = fav ? #imageLiteral(resourceName: "heart") : #imageLiteral(resourceName: "empty-heart")
-            button.setImage(img, for: .normal)
+    func config() {
+        if let data = viewModel?.image, let image = UIImage(data: data) {
+            bgImageView.image = image
         } else {
-            button.setImage(#imageLiteral(resourceName: "empty-heart"), for: .normal)
+            bgImageView.image = #imageLiteral(resourceName: "default-image")
+        }
+        titleLabel.text = viewModel?.title
+        summaryLabel.text = viewModel?.summary
+        let contrastingColor = ContrastColorOf(titleBarView.backgroundColor!, returnFlat: true)
+        titleLabel.textColor = contrastingColor
+        favoriteButton.borderColor = contrastingColor
+    }
+
+    fileprivate func favoriteColor(for button: HeartButton) {
+        if let viewModel = viewModel {
+            button.filled = viewModel.favorite
+        } else {
+            button.filled = false
         }
     }
 }

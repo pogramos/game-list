@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUB-Ja-5GK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iUB-Ja-5GK">
                                 <rect key="frame" x="0.0" y="44" width="375" height="685"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -72,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgR-n9-hIF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jLW-hg-sc1">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="444.66666666666669"/>
@@ -104,7 +104,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AWv-nF-kVy">
                                                 <rect key="frame" x="0.0" y="258" width="375" height="118.33333333333331"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eaK-hQ-lka">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eaK-hQ-lka">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHp-3e-b5J" userLabel="Title View">
@@ -117,7 +117,6 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="ySz-f5-leq" secondAttribute="bottom" id="6G3-A0-Mn0"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ySz-f5-leq" secondAttribute="trailing" constant="20" symbolic="YES" id="Ogj-iQ-Z9T"/>
@@ -125,12 +124,27 @@
                                                                     <constraint firstItem="ySz-f5-leq" firstAttribute="leading" secondItem="IHp-3e-b5J" secondAttribute="leading" constant="20" symbolic="YES" id="fKn-ud-YTL"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNu-fc-9QW">
-                                                                <rect key="frame" x="329" y="0.0" width="30" height="50"/>
-                                                                <color key="tintColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <state key="normal" image="empty-heart"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhl-u4-zwS" customClass="HeartButton" customModule="Game_List" customModuleProvider="target">
+                                                                <rect key="frame" x="329" y="5" width="30" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="6la-1O-7Pz"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="gt7-hb-5XH"/>
+                                                                </constraints>
+                                                                <color key="tintColor" red="0.85043728350000003" green="0.21816034619999999" blue="0.15920260550000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                                                        <color key="value" red="0.85043728350000003" green="0.21816034619999999" blue="0.15920260550000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="favoriteAction:" destination="6Y0-ij-Zm0" eventType="touchUpInside" id="iXY-mT-VDd"/>
+                                                                    <action selector="favoriteAction:" destination="6Y0-ij-Zm0" eventType="touchUpInside" id="coM-rb-5ZS"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -146,7 +160,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="VBY-Ct-mqM" firstAttribute="top" secondItem="JiR-90-qX0" secondAttribute="top" id="MHC-Ki-o6a"/>
                                                             <constraint firstAttribute="bottom" secondItem="VBY-Ct-mqM" secondAttribute="bottom" id="Psh-No-i3Z"/>
@@ -169,7 +182,6 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="gjI-G9-NEs" firstAttribute="top" secondItem="l3W-5K-Flx" secondAttribute="top" id="1yQ-aF-qLb"/>
                                                     <constraint firstItem="gjI-G9-NEs" firstAttribute="leading" secondItem="l3W-5K-Flx" secondAttribute="leading" constant="20" symbolic="YES" id="A1E-yO-e5W"/>
@@ -193,24 +205,32 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="Card"/>
                                 </userDefinedRuntimeAttributes>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rju-hd-m2A">
-                                <rect key="frame" x="20" y="52" width="30" height="30"/>
-                                <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="down-carret"/>
+                            <navigationBar contentMode="scaleToFill" backIndicatorTransitionMaskImage="expand-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="QH8-Mo-JyO">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem id="SgP-p9-Pbb">
+                                        <barButtonItem key="leftBarButtonItem" image="expand-arrow" id="o7U-6d-JJu">
+                                            <connections>
+                                                <action selector="hero_dismissViewController" destination="6Y0-ij-Zm0" id="cML-TL-bgB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
                                 <connections>
-                                    <action selector="hero_dismissViewController" destination="6Y0-ij-Zm0" eventType="touchUpInside" id="gFc-AL-U03"/>
+                                    <outlet property="delegate" destination="6Y0-ij-Zm0" id="d5P-j2-yGb"/>
                                 </connections>
-                            </button>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Rju-hd-m2A" firstAttribute="leading" secondItem="dQK-Pb-fIq" secondAttribute="leading" constant="20" id="1Im-EX-pTH"/>
-                            <constraint firstItem="dQK-Pb-fIq" firstAttribute="trailing" secondItem="KgR-n9-hIF" secondAttribute="trailing" id="BoO-I7-AXE"/>
-                            <constraint firstItem="KgR-n9-hIF" firstAttribute="leading" secondItem="dQK-Pb-fIq" secondAttribute="leading" id="DO6-1b-qxD"/>
-                            <constraint firstItem="KgR-n9-hIF" firstAttribute="top" secondItem="Bxj-1D-zKF" secondAttribute="top" id="GRO-94-e5h"/>
-                            <constraint firstAttribute="bottom" secondItem="KgR-n9-hIF" secondAttribute="bottom" id="KHr-Dy-OEU"/>
-                            <constraint firstItem="jLW-hg-sc1" firstAttribute="centerX" secondItem="dQK-Pb-fIq" secondAttribute="centerX" id="MEx-Bs-1O7"/>
-                            <constraint firstItem="Rju-hd-m2A" firstAttribute="top" secondItem="dQK-Pb-fIq" secondAttribute="top" constant="8" id="pCW-AJ-hPy"/>
+                            <constraint firstItem="QH8-Mo-JyO" firstAttribute="trailing" secondItem="dQK-Pb-fIq" secondAttribute="trailing" id="8qA-Oz-FqL"/>
+                            <constraint firstItem="KgR-n9-hIF" firstAttribute="trailing" secondItem="dQK-Pb-fIq" secondAttribute="trailing" id="98S-3Z-w0F"/>
+                            <constraint firstItem="QH8-Mo-JyO" firstAttribute="top" secondItem="dQK-Pb-fIq" secondAttribute="top" id="PRb-Ud-0eS"/>
+                            <constraint firstItem="KgR-n9-hIF" firstAttribute="leading" secondItem="dQK-Pb-fIq" secondAttribute="leading" id="Plb-5Y-xms"/>
+                            <constraint firstItem="QH8-Mo-JyO" firstAttribute="leading" secondItem="dQK-Pb-fIq" secondAttribute="leading" id="WgG-4K-UR8"/>
+                            <constraint firstItem="KgR-n9-hIF" firstAttribute="top" secondItem="dQK-Pb-fIq" secondAttribute="top" id="giq-g8-Gmt"/>
+                            <constraint firstAttribute="bottom" secondItem="KgR-n9-hIF" secondAttribute="bottom" id="l0F-Gz-Edy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dQK-Pb-fIq"/>
                     </view>
@@ -220,10 +240,11 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="activityIndicator" destination="5zY-b0-GiF" id="69W-vK-wbu"/>
-                        <outlet property="backButton" destination="Rju-hd-m2A" id="ekH-5y-XIp"/>
-                        <outlet property="favoriteButton" destination="hNu-fc-9QW" id="qd9-yA-ezO"/>
+                        <outlet property="favoriteButton" destination="Jhl-u4-zwS" id="8sI-v7-d1B"/>
                         <outlet property="imageView" destination="nuW-F9-esm" id="oIB-6z-HZv"/>
+                        <outlet property="navigationBar" destination="QH8-Mo-JyO" id="vt8-Fq-lV9"/>
                         <outlet property="releaseDateLabel" destination="VBY-Ct-mqM" id="GER-JC-PsN"/>
+                        <outlet property="scrollView" destination="KgR-n9-hIF" id="xPC-Yh-Rjh"/>
                         <outlet property="storylineLabel" destination="gjI-G9-NEs" id="sK5-9c-43i"/>
                         <outlet property="titleLabel" destination="ySz-f5-leq" id="tTh-MB-6Lp"/>
                         <outlet property="titleStackView" destination="AWv-nF-kVy" id="sQT-bM-K9N"/>
@@ -233,11 +254,11 @@
             </objects>
             <point key="canvasLocation" x="3044" y="491"/>
         </scene>
-        <!--Games-->
+        <!--Recent-->
         <scene sceneID="DNw-jp-tZp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="wQq-J6-kva" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Games" image="game_controller" selectedImage="game_controller" id="CWF-o2-aLb"/>
+                    <tabBarItem key="tabBarItem" title="Recent" image="recent" selectedImage="recent" id="CWF-o2-aLb"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="npJ-EX-7pv">
@@ -255,8 +276,7 @@
     </scenes>
     <resources>
         <image name="default" width="375" height="375"/>
-        <image name="down-carret" width="30" height="30"/>
-        <image name="empty-heart" width="30" height="30"/>
-        <image name="game_controller" width="30" height="30"/>
+        <image name="expand-arrow" width="30" height="30"/>
+        <image name="recent" width="30" height="30"/>
     </resources>
 </document>

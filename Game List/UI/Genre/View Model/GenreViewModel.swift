@@ -34,7 +34,7 @@ class GenreViewModel {
     weak var delegate: GenreViewModelDelegate!
 
     var genres: [Genre]?
-
+    var gameOffSet = 0
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<CoreDataGenre> = makeFetchedResultsController()
 
     fileprivate func makeFetchedResultsController() -> NSFetchedResultsController<CoreDataGenre> {
@@ -134,12 +134,34 @@ class GenreViewModel {
         fetchGames(for: section)
     }
 
-    func fetchGames(for section: Int) {
+    func fetchMore(for section: Int) {
+        gameOffSet += 50
         guard let genre = genres?[section] else {
             return
         }
-        IGDBApi.getGames(for: genre, with: Parameters(), success: { games in
-            self.genres?[section].games = games
+        fetch(genre, section)
+    }
+
+    func fetchGames(for section: Int) {
+        guard let genre = genres?[section], (genre.games == nil || genre.games!.count == 0) else {
+            return
+        }
+        fetch(genre, section)
+    }
+
+    fileprivate func fetch(_ genre: Genre, _ section: Int) {
+        var parameter = Parameters()
+        parameter.addParameter(IGDBApi.ParameterKeys.Offset, value: gameOffSet as AnyObject)
+        IGDBApi.getGames(for: genre, with: parameter, success: { games in
+            if self.genres?[section].games == nil {
+                self.genres?[section].games = games
+            } else {
+                if let games = games {
+                    self.genres?[section].games?.append(contentsOf: games)
+                } else {
+                    self.genres?[section].games = []
+                }
+            }
             performUIUpdatesOnMain {
                 let set = IndexSet(arrayLiteral: section)
                 self.delegate.updateUI(with: set)

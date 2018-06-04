@@ -37,6 +37,10 @@ class GenreViewController: UIViewController {
             }
         }
     }
+
+    @objc fileprivate func fetchMore(_ sender: UIButton) {
+        viewModel.fetchMore(for: sender.tag)
+    }
 }
 
 extension GenreViewController: GenreViewModelDelegate {
@@ -56,9 +60,13 @@ extension GenreViewController: GenreViewModelDelegate {
 }
 
 extension GenreViewController: GenreSectionHeaderDelegate {
-    func didSelectSectionHeader(at index: NSInteger) {
+    func didSelectSectionHeader(_ sectionHeader: GenreSectionHeader, at index: NSInteger) {
         Loader.show(on: self.tabBarController)
         viewModel.toggle(section: index)
+
+        if let expanded = viewModel.genre(at: index)?.expanded {
+            sectionHeader.header(expanded: expanded)
+        }
     }
 }
 
@@ -69,8 +77,29 @@ extension GenreViewController: UITableViewDelegate {
         }
         header.delegate = self
         header.tag = section
-        header.titleLabel.text = viewModel.genre(at: section)?.name
+
+        if let genre = viewModel.genre(at: section) {
+            header.titleLabel.text = genre.name
+            let expanded = genre.expanded ?? false
+            header.header(expanded: expanded)
+        }
         return header
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        button.tag = section
+        button.setTitle("Load more", for: .normal)
+        button.setTitleColor(.flatNavyBlueColorDark(), for: .normal)
+        button.target(forAction: #selector(fetchMore(_:)), withSender: self)
+        return button
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if viewModel.numberOfItemsInSection(section: section) > 0 {
+            return 40
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

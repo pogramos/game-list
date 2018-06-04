@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="k1e-1S-e9h">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="4p5-oM-IMO" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="4p5-oM-IMO" customClass="TabViewController" customModule="Game_List" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Q9b-4w-BdY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -38,7 +38,7 @@
         <scene sceneID="WDi-TA-of2">
             <objects>
                 <viewControllerPlaceholder storyboardName="Game" id="tt1-xN-HbA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Games" image="game_controller" selectedImage="game_controller" id="mdw-N0-Oje"/>
+                    <tabBarItem key="tabBarItem" title="Recent" image="recent" selectedImage="game_controller" id="mdw-N0-Oje"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cd8-A5-yAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,7 +58,7 @@
         <scene sceneID="WL6-ps-dAK">
             <objects>
                 <viewControllerPlaceholder storyboardName="Favorite" id="tze-Hh-7gU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="LIZ-Ue-g4j"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" selectedImage="heart" id="LIZ-Ue-g4j"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKx-Th-L6K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,5 +68,7 @@
     <resources>
         <image name="game_controller" width="30" height="30"/>
         <image name="genre" width="32" height="32"/>
+        <image name="heart" width="30" height="30"/>
+        <image name="recent" width="30" height="30"/>
     </resources>
 </document>
