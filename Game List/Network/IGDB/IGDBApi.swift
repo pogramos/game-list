@@ -11,6 +11,7 @@ import CoreData
 class IGDBApi {
     class func getGenres(with parameters: Parameters, success: @escaping ([Genre]?) -> Void, failure: @escaping (ClientError) -> Void) {
         var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Limit, value: "50" as AnyObject)
         parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Genre.fields() as AnyObject)
         do {
             let request = try build(method: .genre(nil), with: parameters)
@@ -26,8 +27,10 @@ class IGDBApi {
 
     class func getGames(for genre: Genre, with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
         var parameters = parameters
+        parameters.addParameter(IGDBApi.ParameterKeys.Limit, value: "50" as AnyObject)
         parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
         if let id = genre.id {
+            parameters.sort("first_release_date", order: .desc)
             parameters.addParameter(IGDBApi.ParameterKeys.FilterGenre, value: id as AnyObject)
             do {
                 let request = try build(method: .game(nil), with: parameters)
@@ -115,7 +118,9 @@ extension IGDBApi {
     }
 
     struct ParameterKeys {
+        static let Limit = "limit"
         static let Fields = "fields"
+        static let Offset = "offset"
         static let FilterGenre = "filter[genres][eq]"
     }
 

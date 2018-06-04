@@ -24,7 +24,6 @@ final class DataController {
 
     fileprivate init() {
         persistentContainer = NSPersistentContainer(name: modelName)
-        viewContext.retainsRegisteredObjects = true
     }
 
     fileprivate func autoSaveContext(interval: TimeInterval = 30) {
@@ -45,7 +44,7 @@ final class DataController {
             if let error = error as NSError? {
                 fatalError("Failed to load persistentContainer \(error), \(error.userInfo)")
             }
-
+            self.viewContext.automaticallyMergesChangesFromParent = true
             self.autoSaveContext()
         }
     }

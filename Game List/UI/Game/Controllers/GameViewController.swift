@@ -11,14 +11,15 @@ import Hero
 import Chameleon
 
 class GameViewController: UIViewController {
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var storylineLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var titleStackView: UIStackView!
-    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteButton: HeartButton!
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var scrollView: UIScrollView!
 
     var viewModel: GameViewModelProtocol!
 
@@ -35,36 +36,38 @@ class GameViewController: UIViewController {
     // MARK: layout
 
     func configUI() {
-        if let backgroundColor = view.backgroundColor {
-            backButton.tintColor = ContrastColorOf(backgroundColor, returnFlat: true)
-        }
+        let gradientColors: [UIColor] = [
+            UIColor.flatWhite(),
+            UIColor.flatWhite().withAlphaComponent(0),
+            UIColor.clear
+        ]
+        navigationBar.backgroundColor = GradientColor(.topToBottom, frame: navigationBar.frame, colors: gradientColors)
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.release
         storylineLabel.text = viewModel.summary
-        setFavoriteImage(for: favoriteButton)
+        favoriteColor(for: favoriteButton)
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         viewModel.fetchImage { (data) in
             self.activityIndicator.stopAnimating()
             if let imgData = data, let image = UIImage(data: imgData) {
                 self.imageView.image = image
-                self.backButton.tintColor = ContrastColorOf(AverageColorFromImage(image), returnFlat: true)
             }
         }
     }
 
     // MARK: Action
-    fileprivate func setFavoriteImage(for button: UIButton) {
-        if viewModel.favorite {
-            button.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+    fileprivate func favoriteColor(for button: HeartButton) {
+        if let viewModel = viewModel {
+            button.filled = viewModel.favorite
         } else {
-            button.setImage(#imageLiteral(resourceName: "empty-heart"), for: .normal)
+            button.filled = false
         }
     }
 
-    @IBAction func favoriteAction(_ sender: UIButton) {
+    @IBAction func favoriteAction(_ sender: HeartButton) {
         viewModel.toggleFavorite()
-        setFavoriteImage(for: sender)
+        favoriteColor(for: sender)
     }
 
 }
