@@ -10,6 +10,8 @@ import UIKit
 import Hero
 
 class GenreViewController: UIViewController {
+    let genreCell = "GenreCell"
+    let segueIdentifier = "genreToGameSegue"
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -17,38 +19,27 @@ class GenreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        registerCells()
+        registerCell()
         Loader.show(on: self)
         viewModel.delegate = self
         viewModel.fetchGenres()
     }
 
-    func registerCells() {
-        let name = String(describing: GenreSectionHeader.self)
-        let headerNib = UINib(nibName: name, bundle: .main)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: name)
+    private func registerCell() {
+        tableView.register(GenreTableViewCell.nib(), forCellReuseIdentifier: GenreTableViewCell.name)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? GameViewController, let cell = sender as? GameTableViewCell {
-            if let indexPath = tableView.indexPath(for: cell), let game = viewModel.game(at: indexPath) {
-                controller.viewModel = GameViewModel(game: game)
+        if segue.identifier == segueIdentifier, let controller = segue.destination as? GamesViewController {
+            guard let senderCell = sender as? GenreTableViewCell, let genre = senderCell.genre else {
+                return
             }
+            controller.viewModel = GamesViewModel(with: genre)
         }
-    }
-
-    @objc fileprivate func fetchMore(_ sender: UIButton) {
-        viewModel.fetchMore(for: sender.tag)
     }
 }
 
-extension GenreViewController: GenreViewModelDelegate {
-    func updateUI(with indexSet: IndexSet) {
-        Loader.hide()
-        tableView.reloadSections(indexSet, with: .fade)
-    }
-
+extension GenreViewController: ControllersProtocol {
     func updateUI() {
         Loader.hide()
         tableView.reloadData()
@@ -59,70 +50,24 @@ extension GenreViewController: GenreViewModelDelegate {
     }
 }
 
-extension GenreViewController: GenreSectionHeaderDelegate {
-    func didSelectSectionHeader(_ sectionHeader: GenreSectionHeader, at index: NSInteger) {
-        Loader.show(on: self.tabBarController)
-        viewModel.toggle(section: index)
-
-        if let expanded = viewModel.genre(at: index)?.expanded {
-            sectionHeader.header(expanded: expanded)
-        }
-    }
-}
-
 extension GenreViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: GenreSectionHeader.self)) as? GenreSectionHeader else {
-            return nil
-        }
-        header.delegate = self
-        header.tag = section
-
-        if let genre = viewModel.genre(at: section) {
-            header.titleLabel.text = genre.name
-            let expanded = genre.expanded ?? false
-            header.header(expanded: expanded)
-        }
-        return header
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        button.tag = section
-        button.setTitle("Load more", for: .normal)
-        button.setTitleColor(.flatNavyBlueColorDark(), for: .normal)
-        button.target(forAction: #selector(fetchMore(_:)), withSender: self)
-        return button
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if viewModel.numberOfItemsInSection(section: section) > 0 {
-            return 40
-        }
-        return 0
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.tableView.estimatedSectionHeaderHeight
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: segueIdentifier, sender: tableView.cellForRow(at: indexPath))
     }
 }
 
 extension GenreViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfSections()
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection(section: section)
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: GameTableViewCell.name) as? GameTableViewCell {
-            if let game = viewModel.game(at: indexPath) {
-                cell.configCell(for: game)
-            }
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GenreTableViewCell.name, for: indexPath) as? GenreTableViewCell else {
+            return UITableViewCell()
         }
-        return UITableViewCell()
+        if let genre = viewModel.genre(at: indexPath.row) {
+            cell.config(with: genre)
+        }
+        return cell
     }
 }

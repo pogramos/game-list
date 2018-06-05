@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Chameleon
 
 @IBDesignable
 class CardUIView: UIView {
+
+    let animationDuration: CGFloat = 0.3
 
     @IBInspectable
     var cornerRadius: CGFloat {
@@ -95,11 +98,36 @@ class CardUIView: UIView {
         }
     }
 
+    private var storedBackgroundColor: UIColor?
+    private var highlightedColor: UIColor? {
+        return backgroundColor?.lighten(byPercentage: 10)
+    }
+
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+
+    fileprivate func setHighlighted(_ highlighted: Bool) {
+        if highlighted {
+            storedBackgroundColor = backgroundColor
+            backgroundColor = highlightedColor
+        } else {
+            backgroundColor = storedBackgroundColor
+        }
+    }
+
+    func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: TimeInterval(animationDuration)) {
+                self.setHighlighted(highlighted)
+            }
+        } else {
+            setHighlighted(highlighted)
+        }
     }
 }
