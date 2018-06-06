@@ -9,7 +9,7 @@
 import UIKit
 
 final class Dialog {
-    static let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    static private let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
 
     // MARK: private methods
 

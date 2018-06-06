@@ -10,8 +10,9 @@ import UIKit
 import Hero
 
 class GenreViewController: UIViewController {
-    let genreCell = "GenreCell"
-    let segueIdentifier = "genreToGameSegue"
+    fileprivate let genreCell = "GenreCell"
+    fileprivate let segueIdentifier = "genreToGameSegue"
+    fileprivate let customTransition = HeroTransition()
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -23,6 +24,15 @@ class GenreViewController: UIViewController {
         Loader.show(on: self)
         viewModel.delegate = self
         viewModel.fetchGenres()
+        hero.isEnabled = true
+        navigationController?.delegate = self
+        navigationController?.hero.navigationAnimationType = .autoReverse(presenting: .zoom)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
     }
 
     private func registerCell() {
@@ -54,6 +64,12 @@ extension GenreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: segueIdentifier, sender: tableView.cellForRow(at: indexPath))
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GenreTableViewCell.name, for: indexPath) as? GenreTableViewCell else {
+            return
+        }
+    }
 }
 
 extension GenreViewController: UITableViewDataSource {
@@ -69,5 +85,17 @@ extension GenreViewController: UITableViewDataSource {
             cell.config(with: genre)
         }
         return cell
+    }
+}
+
+extension GenreViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController,
+                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return customTransition.navigationController(navigationController, interactionControllerFor: animationController)
+    }
+
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation,
+                              from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return customTransition.navigationController(navigationController, animationControllerFor: operation, from: fromVC, to: toVC)
     }
 }

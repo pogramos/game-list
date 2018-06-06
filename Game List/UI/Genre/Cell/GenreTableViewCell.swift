@@ -16,6 +16,8 @@ class GenreTableViewCell: UITableViewCell {
     func config(with genre: Genre) {
         genreTitleLabel.text = genre.name
         self.genre = genre
+        hero.isEnabled = true
+        hero.modifiers = [.fade, .translate(CGPoint(x: 100, y: 0))]
     }
 
     fileprivate func cardSelection(for state: Bool) {
@@ -32,9 +34,12 @@ class GenreTableViewCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         cardSelection(for: highlighted)
+        super.setHighlighted(highlighted, animated: animated)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         cardSelection(for: selected)
+        super.setSelected(selected, animated: animated)
     }
+
 }

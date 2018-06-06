@@ -11,7 +11,11 @@ import Foundation
 class GamesViewModel {
     private let genre: Genre
     private var games = [Game]()
-
+    private var parameters = Parameters([
+        IGDBApi.ParameterKeys.Fields: Game.fields() as AnyObject,
+        IGDBApi.ParameterKeys.Limit: "50" as AnyObject,
+        IGDBApi.ParameterKeys.Scroll: "1" as AnyObject
+        ], headers: [:])
     weak var delegate: ControllersProtocol!
 
     var title: String? {
@@ -30,10 +34,11 @@ class GamesViewModel {
         return games[indexPath.row]
     }
 
-    func fetchGames() {
-        IGDBApi.getGames(for: genre, with: Parameters(), success: { (games) in
+    @objc func fetchGames() {
+        IGDBApi.fetchScrollingGames(with: parameters, success: { (games, parameters) in
+            self.parameters = parameters
             if let games = games {
-                self.games = games
+                self.games.append(contentsOf: games)
             }
             performUIUpdatesOnMain {
                 self.delegate.updateUI()

@@ -36,14 +36,13 @@ class RequestBuilder {
         // it will check for a starting slash
         // in case the path isn't empty
         let path = checkAndFix(path)
+        
+        var urlString = "\(scheme)://\(host)\(path)"
+        if let parameters = parameters {
+            urlString += String(describing: parameters)
+        }
 
-        var components = URLComponents()
-        components.scheme = scheme
-        components.host = host
-        components.path = path
-        components.queryItems = parameters?.query
-
-        guard let url = components.url else { throw ClientError.encodeFailure(nil) }
+        guard let url = URL(string: urlString) else { throw ClientError.encodeFailure(nil) }
 
         var request = NSMutableURLRequest(url: url)
 

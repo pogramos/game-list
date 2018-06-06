@@ -10,6 +10,7 @@ import CoreData
 
 class ClientAPI {
     typealias SuccessBlock<T> = (_ result: T?) -> Void
+    typealias SuccessResponseBlock<T> = (_ result: T?, _ response: HTTPURLResponse?) -> Void
     typealias FailureBlock = (_ failure: ClientError?) -> Void
 
     private let session: URLSessionProtocol
@@ -31,7 +32,25 @@ class ClientAPI {
         task.resume()
     }
 
+    func get<T: Decodable>(request: URLRequest, for type: T.Type, success: @escaping SuccessResponseBlock<T>, failure: @escaping FailureBlock) {
+        let task = taskHandler(request: request, success: { (data, response) in
+            do {
+                let decoded = try JSONDecoder().decode(type, from: data)
+                success(decoded, response as? HTTPURLResponse)
+            } catch let error {
+                failure(.decodeFailure(error))
+            }
+        }, failure: failure)
+        task.resume()
+    }
+
     func taskHandler(request: URLRequest, success: @escaping (Data) -> Void, failure: @escaping (ClientError?) -> Void) -> URLSessionDataTaskProtocol {
+        return taskHandler(request: request, success: { (data, response) in
+            success(data)
+        }, failure: failure)
+    }
+
+    func taskHandler(request: URLRequest, success: @escaping (Data, URLResponse?) -> Void, failure: @escaping (ClientError?) -> Void) -> URLSessionDataTaskProtocol {
         return session.dataTask(with: request, completionHandler: { (data, response, error) in
             guard error == nil else {
                 if let error = error as? URLError {
@@ -58,7 +77,7 @@ class ClientAPI {
             }
 
             if let data = data {
-                success(data)
+                success(data, response)
             } else {
                 failure(.noResultsFound(error))
             }

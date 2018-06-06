@@ -9,7 +9,8 @@
 import CoreData
 
 class IGDBApi {
-    class func getGenres(with parameters: Parameters, success: @escaping ([Genre]?) -> Void, failure: @escaping (ClientError) -> Void) {
+    typealias FailureBlock = (ClientError) -> Void
+    class func getGenres(with parameters: Parameters, success: @escaping ([Genre]?) -> Void, failure: @escaping FailureBlock) {
         var parameters = parameters
         parameters.addParameter(IGDBApi.ParameterKeys.Limit, value: "50" as AnyObject)
         parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Genre.fields() as AnyObject)
@@ -25,7 +26,26 @@ class IGDBApi {
         }
     }
 
-    class func getGames(for genre: Genre, with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping (ClientError) -> Void) {
+    class func fetchScrollingGames(with parameters: Parameters, success: @escaping ([Game]?, Parameters) -> Void, failure: @escaping FailureBlock) {
+        var parameters = parameters
+        do {
+            let request = try build(method: .game(nil), with: parameters)
+            ClientAPI().get(request: request, for: [Game].self, success: { (games, response) in
+                if let nextPage = response?.allHeaderFields[HeaderKey.NextPage] as? String {
+                    parameters = Parameters(path: nextPage)
+                } else {
+                    parameters.shouldScroll = false
+                }
+                success(games, parameters)
+            }, failure: { error in
+                failure(error!)
+            })
+        } catch let err {
+            failure(.error(err))
+        }
+    }
+
+    class func getGames(for genre: Genre, with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping FailureBlock) {
         var parameters = parameters
         parameters.addParameter(IGDBApi.ParameterKeys.Limit, value: "50" as AnyObject)
         parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
@@ -48,7 +68,7 @@ class IGDBApi {
 
     }
 
-    class func getGame(for id: Int, with parameters: Parameters, success: @escaping (Game?) -> Void, failure: @escaping (ClientError) -> Void) {
+    class func getGame(for id: Int, with parameters: Parameters, success: @escaping (Game?) -> Void, failure: @escaping FailureBlock) {
         var parameters = parameters
         parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
         do {
@@ -91,12 +111,16 @@ extension IGDBApi {
         var parameters = parameters
         parameters.headers = [
             HeaderKey.UserKey: HeaderValues.UserKey
-//            HeaderKey.ContentType: HeaderValues.ApplicationJSON
         ]
+
+        var path = method.description
+        if parameters.shouldScroll, let scrollingPath = parameters.scrollingPath, !scrollingPath.isEmpty {
+            path = scrollingPath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        }
 
         return try RequestBuilder.buildRequest(scheme: Constants.APIScheme,
                                                host: Constants.APIHost,
-                                               path: method.description,
+                                               path: path,
                                                parameters: parameters)
     }
 }
@@ -114,13 +138,15 @@ extension IGDBApi {
 
     fileprivate struct HeaderKey {
         static let UserKey = "user-key"
-        static let ContentType = "Content-Type"
+        static let ContentType = "content-type"
+        static let NextPage = "x-next-page"
     }
 
     struct ParameterKeys {
         static let Limit = "limit"
         static let Fields = "fields"
         static let Offset = "offset"
+        static let Scroll = "scroll"
         static let FilterGenre = "filter[genres][eq]"
     }
 
