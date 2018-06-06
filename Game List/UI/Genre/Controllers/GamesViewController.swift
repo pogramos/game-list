@@ -9,6 +9,8 @@
 import UIKit
 
 class GamesViewController: UIViewController {
+    fileprivate let kBottomLoadMoreDistance: CGFloat = 10.0
+    fileprivate var activityIndicator: UIActivityIndicatorView!
     var viewModel: GamesViewModel! {
         didSet {
             viewModel.delegate = self
@@ -19,6 +21,9 @@ class GamesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicator.hidesWhenStopped = true
+        tableView.tableFooterView = activityIndicator
         setupNavigationBar()
     }
 
@@ -53,10 +58,22 @@ extension GamesViewController: ControllersProtocol {
     func updateUI() {
         Loader.hide()
         tableView.reloadData()
+        activityIndicator.stopAnimating()
     }
 
     func showErrorOnUI(_ message: String) {
         Dialog.show(on: self, withTitle: "Error", text: message)
+    }
+}
+
+extension GamesViewController: UITableViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let maxOffset = scrollView.contentSize.height - scrollView.frame.height
+        if (maxOffset - scrollView.contentOffset.y) <= kBottomLoadMoreDistance {
+            activityIndicator.startAnimating()
+            Loader.show(on: self)
+            viewModel.fetchGames()
+        }
     }
 }
 

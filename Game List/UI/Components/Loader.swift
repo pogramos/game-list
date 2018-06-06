@@ -9,8 +9,8 @@
 import UIKit
 
 class Loader {
-    static let blurredView = UIView()
-    static let indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    static private let blurredView = UIView()
+    static private let indicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     fileprivate static func setupActivityIndicator() {
         blurredView.addSubview(indicator)
