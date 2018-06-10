@@ -34,6 +34,19 @@ class ReusableGamesViewModel {
         self.predicate = predicate
     }
 
+    func filter(by text: String?) {
+        do {
+            var predicate: NSPredicate?
+            if let text = text, !text.isEmpty {
+                predicate = NSPredicate(format: "name CONTAINS[cd] %@", text)
+            }
+            fetchedResultsController.fetchRequest.predicate = predicate
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to filter data")
+        }
+    }
+
     func fetchGames() {
         do {
             try fetchedResultsController.performFetch()
