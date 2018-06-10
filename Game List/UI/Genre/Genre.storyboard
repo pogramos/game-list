@@ -54,7 +54,7 @@
                 <viewControllerPlaceholder storyboardName="Game" referencedIdentifier="GameViewController" id="wbr-xz-ABv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Bp-WM-00y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1995" y="134"/>
+            <point key="canvasLocation" x="2646" y="-248"/>
         </scene>
         <!--Games View Controller-->
         <scene sceneID="Kik-MY-QdU">

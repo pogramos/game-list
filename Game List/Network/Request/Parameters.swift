@@ -49,11 +49,24 @@ struct Parameters {
         }
     }
 
+    mutating func addFilter(_ name: String, value: AnyObject) {
+        if query == nil {
+            query = [URLQueryItem]()
+        }
+        query?.append(URLQueryItem(name: "filter\(name)", value: "\(value)"))
+    }
+
     mutating func addParameter(_ name: String, value: AnyObject) {
+        if query == nil {
+            query = [URLQueryItem]()
+        }
         query?.append(URLQueryItem(name: name, value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)))
     }
 
     mutating func sort(_ name: String, order: Order) {
+        if query == nil {
+            query = [URLQueryItem]()
+        }
         if let orderName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             query?.append(URLQueryItem(name: "order", value: "\(orderName):\(order)"))
         }
@@ -63,10 +76,6 @@ struct Parameters {
         query = query?.filter({ (item) -> Bool in
             item.name != name
         })
-    }
-
-    mutating func addFilter(_ name: String, value: AnyObject) {
-        query?.append(URLQueryItem(name: "filter\(name)", value: "\(value)"))
     }
 }
 

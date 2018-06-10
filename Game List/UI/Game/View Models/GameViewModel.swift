@@ -13,12 +13,17 @@ final class GameViewModel {
     private var game: Game?
     private var coreDataGame: CoreDataGame?
 
+    fileprivate enum ImageType: String {
+        case cover = "t_cover_big_2x"
+        case screenshot = "t_screenshot_med_2x"
+    }
+
     var title: String? {
         return coreDataGame?.name
     }
 
     var release: String? {
-        return "\(date(with: coreDataGame?.first_release_date))"
+        return game?.first_release_date?.toDateString() ?? ""
     }
 
     var summary: String? {
@@ -40,16 +45,6 @@ final class GameViewModel {
         coreDataGame = core
     }
 
-    private func date(with number: Int64?) -> String {
-        if let number = number, let interval = TimeInterval(exactly: number / 1000) {
-            let date = Date(timeIntervalSince1970: interval)
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            return formatter.string(from: date)
-        }
-        return ""
-    }
-
     // MARK: coredata
 
     private func saveToCoreData() {
@@ -63,11 +58,10 @@ final class GameViewModel {
         }
     }
 
-    /**
-         - parameters:
-            - id: the identifier of a game downloaded from the server
-        - returns: A representation of a game that was saved localy for a given **id**, otherwise nil
-     */
+    /// Check the existance of a game in the CoreDataModel
+    ///
+    /// - Parameter id: identifier of a game
+    /// - Returns: A representation of a game that was saved localy for a given **id**, otherwise nil
     private func checkGame(with id: Int64) -> CoreDataGame? {
         let fetchRequest: NSFetchRequest<CoreDataGame> = CoreDataGame.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
@@ -79,24 +73,37 @@ final class GameViewModel {
             return nil
         }
     }
+
+    fileprivate func makeUrl(_ url: String, for type: ImageType) -> String {
+        do {
+            let newUrl = url.replacingOccurrences(of: "t_([a-zA-Z0-9]+)", with: type.rawValue, options: .regularExpression)
+            return newUrl
+        } catch {
+            return ""
+        }
+    }
+
+    fileprivate func downloadCover(from url: String, completion: @escaping (Data?) -> Void) {
+        IGDBApi.downloadImage(from: makeUrl(url, for: .cover)) { (imageData, error) in
+            if let error = error {
+                print(error)
+            }
+            self.coreDataGame?.cover = imageData
+            DataController.shared.save()
+            performUIUpdatesOnMain {
+                completion(imageData)
+            }
+        }
+    }
 }
 
 extension GameViewModel: GameViewModelProtocol {
-    func fetchImage(_ completion: @escaping (Data?) -> Void) {
+    func fetchCoverImage(_ completion: @escaping (Data?) -> Void) {
         if let data = coreDataGame?.cover {
             completion(data)
         } else {
             if let url = game?.cover?.url {
-                IGDBApi.downloadImage(from: url) { (imageData, error) in
-                    if let error = error {
-                        print(error)
-                    }
-                    self.coreDataGame?.cover = imageData
-                    DataController.shared.save()
-                    performUIUpdatesOnMain {
-                        completion(imageData)
-                    }
-                }
+                downloadCover(from: url, completion: completion)
             } else {
                 completion(nil)
             }

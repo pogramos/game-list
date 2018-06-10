@@ -36,7 +36,7 @@ class RequestBuilder {
         // it will check for a starting slash
         // in case the path isn't empty
         let path = checkAndFix(path)
-        
+
         var urlString = "\(scheme)://\(host)\(path)"
         if let parameters = parameters {
             urlString += String(describing: parameters)

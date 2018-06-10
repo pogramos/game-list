@@ -8,13 +8,12 @@
 
 import UIKit
 
-class RecentsViewController: UIViewController {
-    let viewModel = RecentsViewModel("recents", sortDescriptors: [])
-
-    @IBOutlet weak var tableView: UITableView!
-
+class RecentsViewController: ReusableUITableViewController {
+    override var segueIdentifier: String { return "recentsToGameSegue" }
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = ReusableGamesViewModel("recents", sortDescriptors: [NSSortDescriptor(key: "favorite", ascending: false)])
+        hero.isEnabled = true
         configUI()
     }
 
@@ -25,30 +24,22 @@ class RecentsViewController: UIViewController {
     }
 
     private func configUI() {
-        registerCells()
         tableView.backgroundView = EmptyStateView(frame: tableView.frame)
         view.setNeedsLayout()
         view.layoutIfNeeded()
     }
 
-    private func registerCells() {
-        tableView.register(ReusableGameTableViewCell.nib(), forCellReuseIdentifier: ReusableGameTableViewCell.name)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? GameViewController {
+            if let indexPath = sender as? IndexPath, let game = viewModel.game(at: indexPath) {
+                controller.viewModel = GameViewModel(core: game)
+            }
+        }
     }
 }
 
-extension RecentsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rows = viewModel.numberOfRows()
-        tableView.backgroundView?.isHidden = rows > 0
-        return rows
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ReusableGameTableViewCell.name, for: indexPath) as? ReusableGameTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.viewModel = ReusableGameModel(game: viewModel.game(at: indexPath))
-        cell.config()
-        return cell
+extension RecentsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: segueIdentifier, sender: indexPath)
     }
 }

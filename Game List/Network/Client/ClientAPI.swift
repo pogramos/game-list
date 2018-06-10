@@ -45,7 +45,7 @@ class ClientAPI {
     }
 
     func taskHandler(request: URLRequest, success: @escaping (Data) -> Void, failure: @escaping (ClientError?) -> Void) -> URLSessionDataTaskProtocol {
-        return taskHandler(request: request, success: { (data, response) in
+        return taskHandler(request: request, success: { (data, _) in
             success(data)
         }, failure: failure)
     }
@@ -72,7 +72,16 @@ class ClientAPI {
             }
 
             guard statusCode >= 200 && statusCode <= 299 else {
-                failure(.networkFailure(self.customError("Request failed with status code of \(statusCode)")))
+                do {
+                    if let data = data {
+                        let igdbError = try JSONDecoder().decode(IGDBError.self, from: data)
+                        failure(.apiError(igdbError))
+                    } else {
+                        failure(.networkFailure(self.customError("Request failed with status code of \(statusCode)")))
+                    }
+                } catch {
+                    failure(.networkFailure(self.customError("Request failed with status code of \(statusCode)")))
+                }
                 return
             }
 

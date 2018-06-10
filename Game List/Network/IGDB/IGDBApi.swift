@@ -33,50 +33,13 @@ class IGDBApi {
             ClientAPI().get(request: request, for: [Game].self, success: { (games, response) in
                 if let nextPage = response?.allHeaderFields[HeaderKey.NextPage] as? String {
                     parameters = Parameters(path: nextPage)
+                    parameters.removeParameter(ParameterKeys.FilterGenre)
                 } else {
                     parameters.shouldScroll = false
                 }
                 success(games, parameters)
             }, failure: { error in
                 failure(error!)
-            })
-        } catch let err {
-            failure(.error(err))
-        }
-    }
-
-    class func getGames(for genre: Genre, with parameters: Parameters, success: @escaping ([Game]?) -> Void, failure: @escaping FailureBlock) {
-        var parameters = parameters
-        parameters.addParameter(IGDBApi.ParameterKeys.Limit, value: "50" as AnyObject)
-        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
-        if let id = genre.id {
-            parameters.sort("first_release_date", order: .desc)
-            parameters.addParameter(IGDBApi.ParameterKeys.FilterGenre, value: id as AnyObject)
-            do {
-                let request = try build(method: .game(nil), with: parameters)
-                ClientAPI().get(request: request, for: [Game].self, success: { games in
-                    success(games)
-                }, failure: { error in
-                    failure(error ?? .error(nil))
-                })
-            } catch let err {
-                failure(.error(err))
-            }
-        } else {
-            failure(.error(nil))
-        }
-
-    }
-
-    class func getGame(for id: Int, with parameters: Parameters, success: @escaping (Game?) -> Void, failure: @escaping FailureBlock) {
-        var parameters = parameters
-        parameters.addParameter(IGDBApi.ParameterKeys.Fields, value: Game.fields() as AnyObject)
-        do {
-            let request = try build(method: .game(id), with: parameters)
-            ClientAPI().get(request: request, for: [Game].self, success: { games in
-                success(games?.first)
-            }, failure: { error in
-                failure(error ?? .error(nil))
             })
         } catch let err {
             failure(.error(err))
@@ -132,7 +95,12 @@ extension IGDBApi {
     }
 
     fileprivate struct HeaderValues {
-        static let UserKey = "25130dce7d3ac8440f3a906a38b3d603"
+        static var UserKey: String {
+            if let key = Bundle.main.object(forInfoDictionaryKey: "SERVICE_KEY") as? String {
+                return key
+            }
+            return ""
+        }
         static let ApplicationJSON = "application/json"
     }
 

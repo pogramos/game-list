@@ -1,5 +1,5 @@
 //
-//  RecentsViewModel.swift
+//  ReusableGamesViewModel.swift
 //  Game List
 //
 //  Created by Guilherme Ramos on 02/06/2018.
@@ -9,13 +9,16 @@
 import Foundation
 import CoreData
 
-class RecentsViewModel {
+class ReusableGamesViewModel {
     private let cacheName: String?
     private let sortDescriptors: [NSSortDescriptor]!
+    private let predicate: NSPredicate?
+
     lazy private var fetchedResultsController: NSFetchedResultsController<CoreDataGame> = makeFetchedResultsController()
     private func makeFetchedResultsController() -> NSFetchedResultsController<CoreDataGame> {
         let fetchRequest: NSFetchRequest<CoreDataGame> = CoreDataGame.fetchRequest()
         fetchRequest.sortDescriptors = sortDescriptors
+        fetchRequest.predicate = predicate
         let fetchedResultsController: NSFetchedResultsController<CoreDataGame> = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: DataController.shared.viewContext,
@@ -25,9 +28,10 @@ class RecentsViewModel {
         return fetchedResultsController
     }
 
-    init(_ cacheName: String?, sortDescriptors: [NSSortDescriptor]) {
+    init(_ cacheName: String?, sortDescriptors: [NSSortDescriptor], predicate: NSPredicate? = nil) {
         self.cacheName = cacheName
         self.sortDescriptors = sortDescriptors
+        self.predicate = predicate
     }
 
     func fetchGames() {

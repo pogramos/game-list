@@ -26,7 +26,6 @@ class GenreViewController: UIViewController {
         viewModel.fetchGenres()
         hero.isEnabled = true
         navigationController?.delegate = self
-        navigationController?.hero.navigationAnimationType = .autoReverse(presenting: .zoom)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -62,13 +61,10 @@ extension GenreViewController: ControllersProtocol {
 
 extension GenreViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: segueIdentifier, sender: tableView.cellForRow(at: indexPath))
-    }
-
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GenreTableViewCell.name, for: indexPath) as? GenreTableViewCell else {
-            return
+        for cell in tableView.visibleCells {
+            cell.hero.modifiers = [.translate(x: tableView.frame.width, y: 0, z: 0)]
         }
+        performSegue(withIdentifier: segueIdentifier, sender: tableView.cellForRow(at: indexPath))
     }
 }
 
