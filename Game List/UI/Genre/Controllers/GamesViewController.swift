@@ -11,6 +11,9 @@ import UIKit
 class GamesViewController: UIViewController {
     fileprivate let kBottomLoadMoreDistance: CGFloat = 10.0
     fileprivate var activityIndicator: UIActivityIndicatorView!
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    fileprivate var emptyView: UIStackView = UIStackView()
+
     var viewModel: GamesViewModel! {
         didSet {
             viewModel.delegate = self
@@ -21,10 +24,7 @@ class GamesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityIndicator.hidesWhenStopped = true
-        tableView.tableFooterView = activityIndicator
-        setupNavigationBar()
+        configUI()
         Loader.show(on: self)
         viewModel.fetchGames()
     }
@@ -45,6 +45,31 @@ class GamesViewController: UIViewController {
         }
     }
 
+    private func configUI() {
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicator.hidesWhenStopped = true
+        tableView.tableFooterView = activityIndicator
+        setupNavigationBar()
+    }
+
+    private func configEmptyView() {
+        let label = UILabel()
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.text = "No games were returned on your search"
+        label.sizeToFit()
+
+        let button = UIButton()
+        button.setTitle("Reload", for: .normal)
+        button.addTarget(viewModel, action: #selector(viewModel.fetchGames), for: .touchUpInside)
+
+        emptyView.addArrangedSubview(label)
+        emptyView.addArrangedSubview(button)
+        emptyView.spacing = 8
+
+        tableView.backgroundView = emptyView
+    }
+
     private func setupNavigationBar() {
         navigationItem.title = viewModel.title
         navigationController?.isNavigationBarHidden = false
@@ -52,7 +77,9 @@ class GamesViewController: UIViewController {
     }
 }
 
-extension GamesViewController: ControllersProtocol {
+// MARK: Controller Protocol Section
+typealias UIController = GamesViewController
+extension UIController: ControllersProtocol {
     func updateUI() {
         Loader.hide()
         tableView.reloadData()
@@ -60,11 +87,15 @@ extension GamesViewController: ControllersProtocol {
     }
 
     func showErrorOnUI(_ message: String) {
+        tableView.reloadData()
+        activityIndicator.stopAnimating()
         Dialog.show(on: self, withTitle: "Error", text: message)
     }
 }
 
-extension GamesViewController: UITableViewDelegate {
+// MARK: TableView Section
+typealias TableViewController = GamesViewController
+extension TableViewController: UITableViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let maxOffset = scrollView.contentSize.height - scrollView.frame.height
         if (maxOffset - scrollView.contentOffset.y) <= kBottomLoadMoreDistance {
@@ -75,9 +106,11 @@ extension GamesViewController: UITableViewDelegate {
     }
 }
 
-extension GamesViewController: UITableViewDataSource {
+extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfItems()
+        let rows = viewModel.numberOfItems()
+        tableView.backgroundView?.isHidden = rows > 0
+        return rows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

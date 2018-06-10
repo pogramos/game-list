@@ -14,8 +14,8 @@ final class GameViewModel {
     private var coreDataGame: CoreDataGame?
 
     fileprivate enum ImageType: String {
-        case cover = "_cover_big_2x"
-        case screenshot = "_screenshot_med_2x"
+        case cover = "t_cover_big_2x"
+        case screenshot = "t_screenshot_med_2x"
     }
 
     var title: String? {
@@ -76,9 +76,7 @@ final class GameViewModel {
 
     fileprivate func makeUrl(_ url: String, for type: ImageType) -> String {
         do {
-            let regex = try NSRegularExpression(pattern: "t_([a-zA-Z0-9]+)", options: .caseInsensitive)
-            let range = NSMakeRange(0, url.count)
-            let newUrl = regex.stringByReplacingMatches(in: url, options: [], range: range, withTemplate: type.rawValue)
+            let newUrl = url.replacingOccurrences(of: "t_([a-zA-Z0-9]+)", with: type.rawValue, options: .regularExpression)
             return newUrl
         } catch {
             return ""

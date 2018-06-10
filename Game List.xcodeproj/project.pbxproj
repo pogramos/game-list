@@ -36,6 +36,8 @@
 		55CFE11220CCBF6800488CB2 /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFE11120CCBF6800488CB2 /* Number+Extension.swift */; };
 		55CFE11920CCDAC300488CB2 /* ScreenshotsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFE11720CCDAC300488CB2 /* ScreenshotsCollectionViewCell.swift */; };
 		55CFE11A20CCDAC300488CB2 /* ScreenshotsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CFE11820CCDAC300488CB2 /* ScreenshotsCollectionViewCell.xib */; };
+		55CFE11C20CD0B6900488CB2 /* IGDBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFE11B20CD0B6900488CB2 /* IGDBError.swift */; };
+		55CFE11E20CD18AB00488CB2 /* ReleaseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFE11D20CD18AB00488CB2 /* ReleaseDate.swift */; };
 		55D36C1D20AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */; };
 		55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */; };
 		55D36C2220AFEC9100934E76 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1F20AFEC9000934E76 /* Game.swift */; };
@@ -135,6 +137,8 @@
 		55CFE11120CCBF6800488CB2 /* Number+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Extension.swift"; sourceTree = "<group>"; };
 		55CFE11720CCDAC300488CB2 /* ScreenshotsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotsCollectionViewCell.swift; sourceTree = "<group>"; };
 		55CFE11820CCDAC300488CB2 /* ScreenshotsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenshotsCollectionViewCell.xib; sourceTree = "<group>"; };
+		55CFE11B20CD0B6900488CB2 /* IGDBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDBError.swift; sourceTree = "<group>"; };
+		55CFE11D20CD18AB00488CB2 /* ReleaseDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDate.swift; sourceTree = "<group>"; };
 		55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataClass.swift"; sourceTree = "<group>"; };
 		55D36C1F20AFEC9000934E76 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -431,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				E66851E6209D6DDD002C0CF9 /* IGDBApi.swift */,
+				55CFE11B20CD0B6900488CB2 /* IGDBError.swift */,
 			);
 			path = IGDB;
 			sourceTree = "<group>";
@@ -441,6 +446,7 @@
 				55D36C1F20AFEC9000934E76 /* Game.swift */,
 				55D36C2020AFEC9000934E76 /* Genre.swift */,
 				55D36C2120AFEC9100934E76 /* Image.swift */,
+				55CFE11D20CD18AB00488CB2 /* ReleaseDate.swift */,
 				55B962F720BE62BF00EDA789 /* CoreDataGame+CoreDataClass.swift */,
 				55B962F820BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift */,
 				55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */,
@@ -752,10 +758,12 @@
 				55B962FA20BE62BF00EDA789 /* CoreDataGame+CoreDataProperties.swift in Sources */,
 				E66851A1209D5C60002C0CF9 /* AppDelegate.swift in Sources */,
 				55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */,
+				55CFE11C20CD0B6900488CB2 /* IGDBError.swift in Sources */,
 				551CE3CF20C25C430031EF84 /* GameModelProtocol.swift in Sources */,
 				551CE3D320C265250031EF84 /* ReusableGamesViewModel.swift in Sources */,
 				5586343520A8E77400389C3A /* GCDBlackBox.swift in Sources */,
 				E66851DC209D6D0D002C0CF9 /* ClientAPI.swift in Sources */,
+				55CFE11E20CD18AB00488CB2 /* ReleaseDate.swift in Sources */,
 				55D36C2220AFEC9100934E76 /* Game.swift in Sources */,
 				5593D4D920A92C6D0012AA9B /* GameTableViewCell.swift in Sources */,
 				558812CF20C6496D00EB069B /* ControllersProtocol.swift in Sources */,

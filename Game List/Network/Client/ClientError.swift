@@ -25,6 +25,7 @@ enum ErrorStrings: String {
 enum ClientError: Error {
     case unauthorized(Error?)
     case error(Error?)
+    case apiError(IGDBError?)
     case encodeFailure(Error?)
     case decodeFailure(Error?)
     case networkFailure(Error?)
@@ -40,6 +41,12 @@ enum ClientError: Error {
         case .unavailableConnection(let error): return "\(ErrorStrings.unavailable_connection.localized) \(String(describing: error))"
         case .error(let error),
              .networkFailure(let error): return "\(ErrorStrings.error.localized) \(String(describing: error))"
+        case .apiError(let error):
+            if let message = error?.err?.message {
+                return "IGDB Warning: \(message)"
+            } else {
+                return ErrorStrings.not_found.localized
+            }
         }
     }
 }
