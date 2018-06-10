@@ -24,6 +24,7 @@ class GamesViewModel {
 
     init(with genre: Genre) {
         self.genre = genre
+        parameters.addParameter(IGDBApi.ParameterKeys.FilterGenre, value: genre.id as AnyObject)
     }
 
     func numberOfItems() -> Int {
@@ -35,17 +36,17 @@ class GamesViewModel {
     }
 
     @objc func fetchGames() {
-        IGDBApi.fetchScrollingGames(with: parameters, success: { (games, parameters) in
-            self.parameters = parameters
+        IGDBApi.fetchScrollingGames(with: parameters, success: { [weak self] (games, parameters) in
+            self?.parameters = parameters
             if let games = games {
-                self.games.append(contentsOf: games)
+                self?.games.append(contentsOf: games)
             }
             performUIUpdatesOnMain {
-                self.delegate.updateUI()
+                self?.delegate.updateUI()
             }
-        }, failure: { error in
+        }, failure: { [weak self] error in
             performUIUpdatesOnMain {
-                self.delegate.showErrorOnUI(error.localizedDescription)
+                self?.delegate.showErrorOnUI(error.localizedDescription)
             }
         })
     }

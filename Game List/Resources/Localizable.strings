@@ -16,3 +16,6 @@
 
 // MARK: strings
 "unavailable_summary" = "No summary available";
+
+// MARK: Text
+"no_favorites" = "You haven't selected a favorite game yet.\nShow 'em some love, tapping the heart button on a game page";

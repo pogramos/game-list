@@ -18,7 +18,7 @@ protocol GameViewModelProtocol: class {
     init(game: Game)
     init(core: CoreDataGame)
 
-    func fetchImage(_ completion: @escaping (Data?) -> Void)
+    func fetchCoverImage(_ completion: @escaping (Data?) -> Void)
     func toggleFavorite()
 }
 
@@ -30,5 +30,5 @@ extension GameViewModelProtocol {
         self.init()
     }
     func toggleFavorite() {}
-    func fetchImage(_ completion: @escaping (Data?) -> Void) {}
+    func fetchCoverImage(_ completion: @escaping (Data?) -> Void) {}
 }

@@ -25,17 +25,15 @@ class GamesViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         tableView.tableFooterView = activityIndicator
         setupNavigationBar()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         Loader.show(on: self)
         viewModel.fetchGames()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden = true
+        if isMovingFromParentViewController {
+            navigationController?.isNavigationBarHidden = true
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

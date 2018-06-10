@@ -29,18 +29,14 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hero.modalAnimationType = .selectBy(presenting: .zoomSlide(direction: .up), dismissing: .slide(direction: .up))
+        self.hero.modalAnimationType = .selectBy(presenting: .slide(direction: .right), dismissing: .slide(direction: .down))
         configUI()
     }
 
     // MARK: layout
 
     func configUI() {
-        let gradientColors: [UIColor] = [
-            UIColor.flatWhite(),
-            UIColor.flatWhite().withAlphaComponent(0),
-            UIColor.clear
-        ]
+        let gradientColors: [UIColor] = [ UIColor.flatWhite(), UIColor.clear ]
         navigationBar.backgroundColor = GradientColor(.topToBottom, frame: navigationBar.frame, colors: gradientColors)
         titleLabel.text = viewModel.title
         releaseDateLabel.text = viewModel.release
@@ -48,7 +44,8 @@ class GameViewController: UIViewController {
         favoriteColor(for: favoriteButton)
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        viewModel.fetchImage { (data) in
+
+        viewModel.fetchCoverImage { (data) in
             self.activityIndicator.stopAnimating()
             if let imgData = data, let image = UIImage(data: imgData) {
                 self.imageView.image = image
@@ -69,5 +66,18 @@ class GameViewController: UIViewController {
         viewModel.toggleFavorite()
         favoriteColor(for: sender)
     }
-
 }
+
+extension GameViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        }
+    }
+}
+
+//extension GameViewController: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        
+//    }
+//}

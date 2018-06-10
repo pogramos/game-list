@@ -29,22 +29,11 @@ class GameTableViewCell: UITableViewCell {
 
     func configCell(for game: Game) {
         titleLabel.text = game.name
-        let dateValue = date(with: game.first_release_date)
-        if !dateValue.isEmpty {
+        let dateValue = game.first_release_date?.toDateString() ?? ""
+        releaseLabel.isHidden = dateValue.isEmpty
+        if !releaseLabel.isHidden {
             releaseLabel.text = "Release date: \(dateValue)"
-        } else {
-            releaseLabel.isHidden = true
         }
         summaryLabel.text = game.summary ?? Code.unavailable_summary.description
-    }
-
-    func date(with number: Int64?) -> String {
-        if let number = number, let interval = TimeInterval(exactly: number / 1000) {
-            let date = Date(timeIntervalSince1970: interval)
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            return formatter.string(from: date)
-        }
-        return ""
     }
 }

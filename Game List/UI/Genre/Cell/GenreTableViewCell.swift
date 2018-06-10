@@ -17,7 +17,7 @@ class GenreTableViewCell: UITableViewCell {
         genreTitleLabel.text = genre.name
         self.genre = genre
         hero.isEnabled = true
-        hero.modifiers = [.fade, .translate(CGPoint(x: 100, y: 0))]
+        genreTitleLabel.textColor = .flatNavyBlueColorDark()
     }
 
     fileprivate func cardSelection(for state: Bool) {
