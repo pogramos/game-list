@@ -13,7 +13,6 @@ class ReusableUITableViewController: UIViewController {
         return ""
     }
     var viewModel: ReusableGamesViewModel!
-    
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
