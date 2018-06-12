@@ -38,6 +38,7 @@
 		55CFE11A20CCDAC300488CB2 /* ScreenshotsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55CFE11820CCDAC300488CB2 /* ScreenshotsCollectionViewCell.xib */; };
 		55CFE11C20CD0B6900488CB2 /* IGDBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFE11B20CD0B6900488CB2 /* IGDBError.swift */; };
 		55CFE11E20CD18AB00488CB2 /* ReleaseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CFE11D20CD18AB00488CB2 /* ReleaseDate.swift */; };
+		55CFE12020CF7E7400488CB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55CFE11F20CF7E7400488CB2 /* Assets.xcassets */; };
 		55D36C1D20AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */; };
 		55D36C1E20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */; };
 		55D36C2220AFEC9100934E76 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D36C1F20AFEC9000934E76 /* Game.swift */; };
@@ -60,7 +61,6 @@
 		E66851A1209D5C60002C0CF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66851A0209D5C60002C0CF9 /* AppDelegate.swift */; };
 		E66851A6209D5C60002C0CF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E66851A4209D5C60002C0CF9 /* Main.storyboard */; };
 		E66851A9209D5C60002C0CF9 /* Game_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E66851A7209D5C60002C0CF9 /* Game_List.xcdatamodeld */; };
-		E66851AB209D5C62002C0CF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E66851AA209D5C62002C0CF9 /* Assets.xcassets */; };
 		E66851AE209D5C62002C0CF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E66851AC209D5C62002C0CF9 /* LaunchScreen.storyboard */; };
 		E66851C4209D5C62002C0CF9 /* Game_ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66851C3209D5C62002C0CF9 /* Game_ListUITests.swift */; };
 		E66851D7209D6A9B002C0CF9 /* Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66851D6209D6A9B002C0CF9 /* Hero.framework */; };
@@ -139,6 +139,7 @@
 		55CFE11820CCDAC300488CB2 /* ScreenshotsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenshotsCollectionViewCell.xib; sourceTree = "<group>"; };
 		55CFE11B20CD0B6900488CB2 /* IGDBError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDBError.swift; sourceTree = "<group>"; };
 		55CFE11D20CD18AB00488CB2 /* ReleaseDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseDate.swift; sourceTree = "<group>"; };
+		55CFE11F20CF7E7400488CB2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55D36C1920AFEC8300934E76 /* CoreDataGenre+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		55D36C1A20AFEC8300934E76 /* CoreDataGenre+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreDataGenre+CoreDataClass.swift"; sourceTree = "<group>"; };
 		55D36C1F20AFEC9000934E76 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -168,7 +169,6 @@
 		E66851A0209D5C60002C0CF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E66851A5209D5C60002C0CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E66851A8209D5C60002C0CF9 /* Game_List.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Game_List.xcdatamodel; sourceTree = "<group>"; };
-		E66851AA209D5C62002C0CF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E66851AD209D5C62002C0CF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E66851AF209D5C62002C0CF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E66851B4209D5C62002C0CF9 /* Game ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Game ListTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -533,9 +533,9 @@
 		E6DD60CC209FB159004B4085 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55CFE11F20CF7E7400488CB2 /* Assets.xcassets */,
 				55E2467520B67E34003180D7 /* Fonts */,
 				E66851A0209D5C60002C0CF9 /* AppDelegate.swift */,
-				E66851AA209D5C62002C0CF9 /* Assets.xcassets */,
 				E66851AC209D5C62002C0CF9 /* LaunchScreen.storyboard */,
 				E66851AF209D5C62002C0CF9 /* Info.plist */,
 				55D36C2B20B288B000934E76 /* Localizable.strings */,
@@ -654,8 +654,8 @@
 				E66851AE209D5C62002C0CF9 /* LaunchScreen.storyboard in Resources */,
 				E6DD60B9209EE1EC004B4085 /* Game.storyboard in Resources */,
 				55D36C2C20B288B000934E76 /* Localizable.strings in Resources */,
-				E66851AB209D5C62002C0CF9 /* Assets.xcassets in Resources */,
 				55FA41C120C4D9720026D72F /* EmptyStateView.xib in Resources */,
+				55CFE12020CF7E7400488CB2 /* Assets.xcassets in Resources */,
 				E66851A6209D5C60002C0CF9 /* Main.storyboard in Resources */,
 				558812CB20C6372400EB069B /* GenreTableViewCell.xib in Resources */,
 				E6DD60BB209EE209004B4085 /* Genre.storyboard in Resources */,
@@ -953,6 +953,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S5EZY468C5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -975,6 +976,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S5EZY468C5;
 				FRAMEWORK_SEARCH_PATHS = (

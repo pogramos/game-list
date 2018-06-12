@@ -15,7 +15,6 @@ class UICarouselCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var activeCellView: UIView!
 
-
     override func layoutSubviews() {
         super.layoutSubviews()
         guard let superCarouselView = superview as? UICarouselView else {
