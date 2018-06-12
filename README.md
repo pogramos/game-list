@@ -1,7 +1,7 @@
 Game List
 ---
 
-Udacity iOS nanodegree project built with [IGDB API](https://igdb.github.io/api/). 
+Udacity iOS nanodegree project built with [IGDB API](https://igdb.github.io/api/).
 
 This application let you list games based on a selected genre. Each game you visit will be saved on your "recents" list and persisted on your phone. There you will also be able to see which games you've marked as a favorite.
 
@@ -12,7 +12,7 @@ To run the application you will need to install the dependencies with [Carthage]
 Run the commands
 ```
 git clone https://github.com/pogramos/game-list.git
-
+cd game-list
 carthage bootstrap --platform iOS --no-use-binaries
 ```
 
