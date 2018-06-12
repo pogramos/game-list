@@ -30,6 +30,10 @@ final class GameViewModel {
         return coreDataGame?.summary ?? "No summary available"
     }
 
+    var storyline: String? {
+        return coreDataGame?.storyline ?? "No storyline available"
+    }
+
     var favorite: Bool {
         return coreDataGame?.favorite ?? false
     }

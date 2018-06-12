@@ -12,6 +12,7 @@ protocol GameViewModelProtocol: class {
     var title: String? { get }
     var release: String? { get }
     var summary: String? { get }
+    var storyline: String? { get }
     var favorite: Bool { get }
 
     init()

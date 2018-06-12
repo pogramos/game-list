@@ -723,7 +723,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sourcery --sources \"./Game List\" --templates \"./Game List/Stencil Templates\" --output \"./Game List/Model/\"\n";
+			shellScript = "#sourcery --sources \"./Game List\" --templates \"./Game List/Stencil Templates\" --output \"./Game List/Model/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
