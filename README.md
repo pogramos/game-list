@@ -16,7 +16,7 @@ cd game-list
 carthage bootstrap --platform iOS --no-use-binaries
 ```
 
-Interface
+Usage
 ---
 When you enter the application you will face a tab bar with two items named "Recents" and "Genres". You can check the images [here](/Images/).
 
