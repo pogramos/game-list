@@ -34,13 +34,13 @@ enum ClientError: Error {
 
     var localizedDescription: String {
         switch self {
-        case .unauthorized(let error): return "\(ErrorStrings.unauthorized.localized) \(String(describing: error))"
-        case .encodeFailure(let error): return "\(ErrorStrings.encode_failure.localized) \(String(describing: error))"
-        case .decodeFailure(let error): return "\(ErrorStrings.decode_failure.localized) \(String(describing: error))"
-        case .noResultsFound(let error): return "\(ErrorStrings.not_found.localized) \(String(describing: error))"
-        case .unavailableConnection(let error): return "\(ErrorStrings.unavailable_connection.localized) \(String(describing: error))"
+        case .unauthorized(let error): return "\(ErrorStrings.unauthorized.localized) \(String(describing: error?.localizedDescription))"
+        case .encodeFailure(let error): return "\(ErrorStrings.encode_failure.localized) \(String(describing: error?.localizedDescription))"
+        case .decodeFailure(let error): return "\(ErrorStrings.decode_failure.localized) \(String(describing: error?.localizedDescription))"
+        case .noResultsFound(let error): return "\(ErrorStrings.not_found.localized) \(String(describing: error?.localizedDescription))"
+        case .unavailableConnection(let error): return "\(ErrorStrings.unavailable_connection.localized) \(String(describing: error?.localizedDescription))"
         case .error(let error),
-             .networkFailure(let error): return "\(ErrorStrings.error.localized) \(String(describing: error))"
+             .networkFailure(let error): return "\(ErrorStrings.error.localized) \(String(describing: error?.localizedDescription))"
         case .apiError(let error):
             if let message = error?.err?.message {
                 return "IGDB Warning: \(message)"
