@@ -103,7 +103,6 @@ class CardUIView: UIView {
         return backgroundColor?.lighten(byPercentage: 10)
     }
 
-
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

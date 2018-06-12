@@ -75,12 +75,8 @@ final class GameViewModel {
     }
 
     fileprivate func makeUrl(_ url: String, for type: ImageType) -> String {
-        do {
-            let newUrl = url.replacingOccurrences(of: "t_([a-zA-Z0-9]+)", with: type.rawValue, options: .regularExpression)
-            return newUrl
-        } catch {
-            return ""
-        }
+        let newUrl = url.replacingOccurrences(of: "t_([a-zA-Z0-9]+)", with: type.rawValue, options: .regularExpression)
+        return newUrl
     }
 
     fileprivate func downloadCover(from url: String, completion: @escaping (Data?) -> Void) {
