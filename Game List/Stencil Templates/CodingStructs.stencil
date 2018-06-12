@@ -1,0 +1,45 @@
+{% for type in types.structs|annotated:"Codable" %}
+// sourcery:file:Generated/{{ type.name }}+Codable.swift
+import Foundation
+{% if type|annotated:"CoreDataEquivalency" %}import CoreData{% endif %}
+
+extension {{ type.name }} {
+  enum CodingKeys: String, CodingKey {
+    {% for variable in type.variables %}
+      {% if variable|!annotated:"skip" %}
+      case {{ variable.name }}
+      {% endif %}
+    {% endfor %}
+  }
+
+  static func fields() -> String {
+    let fields = "{% for variable in type.variables|!annotated:"skip" %}{{ variable.name }}{% if not forloop.last %},{% endif %}{% endfor %}"
+    return fields
+  }
+  {% if type|annotated:"CoreDataEquivalency" %}
+  func toCoreData(on context: NSManagedObjectContext) -> CoreData{{ type.name }} {
+    let equivalent = CoreData{{ type.name }}(context: context)
+    {% for variable in type.variables|!annotated:"unconvertible"|!annotated:"skip" %}
+      {% if variable.isOptional %}
+    if let {{ variable.name }} = {{ variable.name }} {
+      equivalent.{{ variable.name }} = {{ variable.name }}
+    }
+      {% endif %}
+    {% endfor %}
+    return equivalent
+  }
+  {% endif %}
+}
+{% if type|annotated:"CoreDataEquivalency" %}
+extension CoreData{{ type.name }} {
+  func toModel() -> {{ type.name }} {
+    var model = {{ type.name }}()
+    {% for variable in type.variables|!annotated:"unconvertible"|!annotated:"skip" %}
+    model.{{ variable.name }} = {{ variable.name }}
+    {% endfor %}
+    return model
+  }
+}
+{% endif %}
+// sourcery:end
+{% endfor %}

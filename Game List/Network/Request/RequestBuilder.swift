@@ -16,7 +16,7 @@ class RequestBuilder {
     /// - Returns: A new fixed path in case it is passed without the slash, otherwise return without editing it
     fileprivate class func checkAndFix(_ path: String) -> String {
         var path = path
-        if path != "" && path.prefix(path.startIndex.encodedOffset) != "/" {
+        if path != "" && path[0] != "/" {
             path.insert("/", at: path.startIndex)
         }
         return path
@@ -37,13 +37,12 @@ class RequestBuilder {
         // in case the path isn't empty
         let path = checkAndFix(path)
 
-        var components = URLComponents()
-        components.scheme = scheme
-        components.host = host
-        components.path = path
-        components.queryItems = parameters?.query
+        var urlString = "\(scheme)://\(host)\(path)"
+        if let parameters = parameters {
+            urlString += String(describing: parameters)
+        }
 
-        guard let url = components.url else { throw ClientError.encodeFailure(nil) }
+        guard let url = URL(string: urlString) else { throw ClientError.encodeFailure(nil) }
 
         var request = NSMutableURLRequest(url: url)
 

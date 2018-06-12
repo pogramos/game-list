@@ -8,9 +8,24 @@
 
 import Foundation
 
+enum ErrorStrings: String {
+    case unauthorized
+    case error
+    case encode_failure
+    case decode_failure
+    case not_found
+    case wrong_path
+    case unavailable_connection
+
+    var localized: String {
+        return self.rawValue.localized()
+    }
+}
+
 enum ClientError: Error {
     case unauthorized(Error?)
     case error(Error?)
+    case apiError(IGDBError?)
     case encodeFailure(Error?)
     case decodeFailure(Error?)
     case networkFailure(Error?)
@@ -19,11 +34,19 @@ enum ClientError: Error {
 
     var localizedDescription: String {
         switch self {
-        case .unauthorized(let error): return "\(Constants.Error.forbiddenAccess) \(String(describing: error))"
-        case .encodeFailure(let error): return "\(Constants.Error.encode) \(String(describing: error))"
-        case .decodeFailure(let error): return "\(Constants.Error.decode) \(String(describing: error))"
-        case .noResultsFound(let error): return "\(Constants.Error.notFound) \(String(describing: error))"
-        case .error(let error), .networkFailure(let error), .unavailableConnection(let error): return "\(Constants.Error.common) \(String(describing: error))"
+        case .unauthorized(let error): return "\(ErrorStrings.unauthorized.localized) \(String(describing: error))"
+        case .encodeFailure(let error): return "\(ErrorStrings.encode_failure.localized) \(String(describing: error))"
+        case .decodeFailure(let error): return "\(ErrorStrings.decode_failure.localized) \(String(describing: error))"
+        case .noResultsFound(let error): return "\(ErrorStrings.not_found.localized) \(String(describing: error))"
+        case .unavailableConnection(let error): return "\(ErrorStrings.unavailable_connection.localized) \(String(describing: error))"
+        case .error(let error),
+             .networkFailure(let error): return "\(ErrorStrings.error.localized) \(String(describing: error))"
+        case .apiError(let error):
+            if let message = error?.err?.message {
+                return "IGDB Warning: \(message)"
+            } else {
+                return ErrorStrings.not_found.localized
+            }
         }
     }
 }
